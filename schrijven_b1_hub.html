@@ -35,6 +35,7 @@
     font-size: 15px;
     line-height: 1.65;
     min-height: 100vh;
+    -webkit-text-size-adjust: 100%;
   }
 
   header {
@@ -345,25 +346,16 @@
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 
-  @media (max-width: 700px) {
-    .layout { grid-template-columns: 1fr; }
-    .sidebar { display: none; }
-    .main { padding: 1.25rem; }
-    .two-col { grid-template-columns: 1fr; }
-    .phrases-grid { grid-template-columns: 1fr; }
-  }
-
   .top-nav {
     display: none;
-    padding: 0.75rem 1.25rem;
+    padding: 0.75rem 1rem;
     background: var(--surface);
     border-bottom: 1px solid var(--border);
     overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
     gap: 8px;
     white-space: nowrap;
   }
-
-  @media (max-width: 700px) { .top-nav { display: flex; } }
 
   .top-nav-item {
     font-size: 0.8rem;
@@ -380,6 +372,57 @@
     background: var(--accent);
     color: white;
     border-color: var(--accent);
+  }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .top-nav { display: flex; }
+
+    header { padding: 1.25rem 1rem 1rem; }
+    header h1 { font-size: 0.95rem; }
+
+    .exam-banner {
+      padding: 0.6rem 1rem;
+      font-size: 0.75rem;
+      gap: 0.5rem 1.5rem;
+    }
+
+    .main { padding: 1rem; max-width: 100%; }
+
+    .section-title { font-size: 1.15rem; }
+    .section-subtitle { font-size: 0.75rem; }
+
+    .subtype-header { padding: 0.85rem 1rem 0.65rem; }
+    .subtype-body { padding: 0 1rem 1rem; }
+    .subtype-name { font-size: 0.9rem; }
+
+    .template-box {
+      font-size: 0.75rem;
+      padding: 0.85rem;
+      line-height: 1.75;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .structure-pills { gap: 5px; }
+    .pill { font-size: 0.7rem; padding: 2px 8px; }
+    .arrow { font-size: 0.65rem; }
+
+    .phrases-grid { grid-template-columns: 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+
+    .phrase-item { padding: 0.45rem 0.65rem; }
+    .phrase-nl { font-size: 0.82rem; }
+    .phrase-en { font-size: 0.72rem; }
+
+    .tip-box { font-size: 0.75rem; padding: 0.5rem 0.75rem; }
+
+    .score-grid { grid-template-columns: 1fr 1fr; }
+
+    .tag { font-size: 0.68rem; }
+
+    .top-nav-item { font-size: 0.75rem; padding: 6px 14px; }
   }
 </style>
 </head>
