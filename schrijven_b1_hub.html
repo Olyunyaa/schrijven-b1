@@ -1,0 +1,1396 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NT2 B1 Schrijven — Scenario Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F5F2ED;
+    --surface: #FDFCFA;
+    --border: #D8D3C8;
+    --border-light: #EAE6DF;
+    --text: #1A1714;
+    --muted: #6B6560;
+    --hint: #A09A93;
+    --accent: #4A0E1B;
+    --accent-light: #F2E8EA;
+    --accent-mid: #6B1E2E;
+    --fill: #C35A1A;
+    --fill-bg: #FDF0E8;
+    --warn: #8B4513;
+    --warn-bg: #FEF3E8;
+    --tag-bg: #EDE9E2;
+    --radius: 10px;
+    --radius-lg: 16px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 15px;
+    line-height: 1.65;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--accent);
+    color: white;
+    padding: 2rem 2.5rem 1.75rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  header h1 {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+    margin-bottom: 0.25rem;
+  }
+
+  header p {
+    font-size: 0.8rem;
+    opacity: 0.65;
+    font-family: 'DM Mono', monospace;
+  }
+
+  .exam-banner {
+    background: var(--warn-bg);
+    border-bottom: 1px solid #E8C9A0;
+    padding: 0.75rem 2.5rem;
+    font-size: 0.82rem;
+    color: var(--warn);
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .exam-banner span { font-weight: 500; }
+
+  .layout {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    min-height: calc(100vh - 100px);
+  }
+
+  .sidebar {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 1.5rem 0;
+    position: sticky;
+    top: 80px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+  }
+
+  .sidebar-section {
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 0.25rem;
+  }
+
+  .sidebar-section:last-child { border-bottom: none; }
+
+  .sidebar-label {
+    font-size: 0.68rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.12em;
+    color: var(--hint);
+    padding: 0.5rem 1.25rem 0.25rem;
+    text-transform: uppercase;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0.45rem 1.25rem;
+    cursor: pointer;
+    font-size: 0.88rem;
+    color: var(--muted);
+    border-left: 2px solid transparent;
+    transition: all 0.15s;
+  }
+
+  .nav-item:hover { color: var(--text); background: var(--bg); }
+
+  .nav-item.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: var(--accent-light);
+    font-weight: 500;
+  }
+
+  .nav-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+    transition: background 0.15s;
+  }
+
+  .nav-item.active .nav-dot { background: var(--accent); }
+
+  .main {
+    padding: 2rem 2.5rem;
+    max-width: 900px;
+  }
+
+  .section { display: none; }
+  .section.active { display: block; }
+
+  .section-header {
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+
+  .section-subtitle {
+    font-size: 0.82rem;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .subtypes-grid {
+    display: grid;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .subtype-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+
+  .subtype-card:hover { border-color: var(--accent-mid); }
+
+  .subtype-header {
+    padding: 1rem 1.25rem 0.75rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    background: var(--surface);
+  }
+
+  .subtype-header:hover { background: var(--accent-light); }
+
+  .subtype-name {
+    font-weight: 500;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+  }
+
+  .subtype-name-en {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .subtype-meta {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-top: 6px;
+  }
+
+  .tag {
+    font-size: 0.72rem;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: var(--tag-bg);
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+  }
+
+  .tag.formal { background: #EAF0FE; color: #3456A8; }
+  .tag.informal { background: #FEF0E8; color: #9A4820; }
+  .tag.words { background: var(--accent-light); color: var(--accent); }
+
+  .chevron {
+    font-size: 0.8rem;
+    color: var(--hint);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .subtype-card.open .chevron { transform: rotate(180deg); }
+  .subtype-card.open .subtype-header { background: var(--accent-light); }
+
+  .subtype-body {
+    display: none;
+    padding: 0 1.25rem 1.25rem;
+    border-top: 1px solid var(--border-light);
+  }
+
+  .subtype-card.open .subtype-body { display: block; }
+
+  .body-label {
+    font-size: 0.68rem;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 0.1em;
+    color: var(--hint);
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .structure-pills {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 0.25rem;
+  }
+
+  .pill {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--accent-light);
+    color: var(--accent);
+    border: 1px solid #D4B5BB;
+  }
+
+  .arrow { color: var(--hint); font-size: 0.75rem; }
+
+  .template-box {
+    background: var(--bg);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.85;
+    white-space: pre-wrap;
+    margin-top: 0.25rem;
+  }
+
+  .fill-word { color: var(--fill); font-weight: 500; }
+
+  .tip-box {
+    margin-top: 0.75rem;
+    padding: 0.6rem 0.9rem;
+    background: var(--warn-bg);
+    border-left: 3px solid #D4884A;
+    border-radius: 0 var(--radius) var(--radius) 0;
+    font-size: 0.8rem;
+    color: var(--warn);
+    line-height: 1.6;
+  }
+
+  .tip-box strong { font-weight: 500; }
+
+  .phrases-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+  }
+
+  .phrase-item {
+    background: var(--bg);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .phrase-nl { font-weight: 500; color: var(--text); margin-bottom: 2px; }
+  .phrase-en { color: var(--muted); font-size: 0.75rem; }
+
+  .score-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+  }
+
+  .score-item {
+    background: var(--bg);
+    border-radius: var(--radius);
+    padding: 0.75rem;
+    font-size: 0.82rem;
+  }
+
+  .score-name { font-weight: 500; margin-bottom: 2px; }
+  .score-en { font-size: 0.73rem; color: var(--muted); margin-bottom: 6px; }
+  .score-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .score-fill { height: 100%; background: var(--accent-mid); border-radius: 2px; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  @media (max-width: 700px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { display: none; }
+    .main { padding: 1.25rem; }
+    .two-col { grid-template-columns: 1fr; }
+    .phrases-grid { grid-template-columns: 1fr; }
+  }
+
+  .top-nav {
+    display: none;
+    padding: 0.75rem 1.25rem;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    overflow-x: auto;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 700px) { .top-nav { display: flex; } }
+
+  .top-nav-item {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--muted);
+    background: var(--surface);
+    flex-shrink: 0;
+  }
+
+  .top-nav-item.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>NT2 B1 SCHRIJVEN — SCENARIO HUB</h1>
+  <p>Alle brieftypen met subtypes, structuur en templates · Nederlands + English</p>
+</header>
+
+<div class="exam-banner">
+  <span>⏱ 100 minuten</span>
+  <span>📝 Zinstaak (1–8) · Deelschrijftaak (9–10) · Korte schrijftaak (11–12)</span>
+  <span>📖 Van Dale woordenboek toegestaan</span>
+  <span>✓ Cesuur: lees altijd ALLE punten in de opdracht</span>
+</div>
+
+<div class="top-nav" id="topNav"></div>
+
+<div class="layout">
+  <nav class="sidebar">
+    <div class="sidebar-section">
+      <div class="sidebar-label">Brieven & E-mails</div>
+      <div class="nav-item active" onclick="show('klacht')"><span class="nav-dot"></span>Klacht / complaint</div>
+      <div class="nav-item" onclick="show('verzoek')"><span class="nav-dot"></span>Verzoek / request</div>
+      <div class="nav-item" onclick="show('sollicitatie')"><span class="nav-dot"></span>Sollicitatie / application</div>
+      <div class="nav-item" onclick="show('uitnodiging')"><span class="nav-dot"></span>Uitnodiging / invitation</div>
+      <div class="nav-item" onclick="show('advies')"><span class="nav-dot"></span>Advies & tips / advice</div>
+      <div class="nav-item" onclick="show('reactie')"><span class="nav-dot"></span>Reactie / response</div>
+      <div class="nav-item" onclick="show('informatie')"><span class="nav-dot"></span>Informatie vragen</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Examenonderdelen</div>
+      <div class="nav-item" onclick="show('zinstaak')"><span class="nav-dot"></span>Zinstaak (1–8)</div>
+      <div class="nav-item" onclick="show('formulier')"><span class="nav-dot"></span>Formulier (10)</div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-label">Referentie</div>
+      <div class="nav-item" onclick="show('aanhef')"><span class="nav-dot"></span>Aanhef & afsluiting</div>
+      <div class="nav-item" onclick="show('verbinding')"><span class="nav-dot"></span>Verbindingswoorden</div>
+      <div class="nav-item" onclick="show('beoordeling')"><span class="nav-dot"></span>Beoordelingscriteria</div>
+    </div>
+  </nav>
+
+  <main class="main">
+
+    <!-- KLACHT -->
+    <div id="klacht" class="section active">
+      <div class="section-header">
+        <div class="section-title">Klacht schrijven</div>
+        <div class="section-subtitle">Writing a complaint — middellange schrijftaak · 120–150 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Klacht over product / dienst</div>
+              <div class="subtype-name-en">Complaint about product or service</div>
+              <div class="subtype-meta">
+                <span class="tag formal">formeel</span>
+                <span class="tag words">120–150 w</span>
+              </div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Structuur / Structure</div>
+            <div class="structure-pills">
+              <span class="pill">Aanhef</span><span class="arrow">→</span>
+              <span class="pill">Situatie</span><span class="arrow">→</span>
+              <span class="pill">Probleem</span><span class="arrow">→</span>
+              <span class="pill">Wat al gedaan</span><span class="arrow">→</span>
+              <span class="pill">Oplossing vragen</span><span class="arrow">→</span>
+              <span class="pill">Afsluiting</span>
+            </div>
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw + naam]</span>,
+
+Ik schrijf u omdat ik een probleem heb met <span class="fill-word">[product/dienst]</span> dat ik op <span class="fill-word">[datum]</span> heb <span class="fill-word">[gekocht/besteld]</span>.
+
+<span class="fill-word">[Beschrijf het probleem: wat werkt niet, wat is er mis]</span>. Dit is erg vervelend omdat <span class="fill-word">[reden]</span>.
+
+Ik heb al <span class="fill-word">[gebeld / een e-mail gestuurd / gewacht]</span>, maar het probleem is nog niet opgelost.
+
+Ik verzoek u vriendelijk om <span class="fill-word">[repareren / terugbetalen / vervangen / contact opnemen]</span>. Ik zie uw reactie graag tegemoet.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+            <div class="tip-box"><strong>Sleutelzinnen:</strong> "Ik schrijf u omdat..." · "Helaas..." · "Dit is erg vervelend" · "Ik verzoek u vriendelijk om..." · "Ik zie uw reactie graag tegemoet"</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Klacht over situatie (buren, werk, school)</div>
+              <div class="subtype-name-en">Complaint about situation — neighbours, work, school</div>
+              <div class="subtype-meta">
+                <span class="tag formal">formeel</span>
+                <span class="tag words">120–150 w</span>
+              </div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Structuur</div>
+            <div class="structure-pills">
+              <span class="pill">Aanhef</span><span class="arrow">→</span>
+              <span class="pill">Wie je bent</span><span class="arrow">→</span>
+              <span class="pill">Situatie beschrijven</span><span class="arrow">→</span>
+              <span class="pill">Gevolg voor jou</span><span class="arrow">→</span>
+              <span class="pill">Verzoek</span>
+            </div>
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw]</span>,
+
+Mijn naam is <span class="fill-word">[naam]</span> en ik woon/werk <span class="fill-word">[op adres / in afdeling]</span>.
+
+Ik schrijf u omdat ik al <span class="fill-word">[een tijd / twee weken]</span> last heb van <span class="fill-word">[lawaai / rommel / slechte communicatie]</span>. <span class="fill-word">[Beschrijf concreet wat er gebeurt]</span>.
+
+Dit is voor mij erg moeilijk omdat <span class="fill-word">[ik niet kan slapen / werken / me concentreren]</span>.
+
+Ik vraag u vriendelijk om hier iets aan te doen. <span class="fill-word">[Specifiek verzoek]</span>.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam + adres/afdeling]</span></div>
+            <div class="tip-box"><strong>Let op:</strong> schrijf concreet — niet "het is slecht" maar "de muziek gaat tot 2 uur 's nachts" · Noem altijd wat je wilt dat er gebeurt</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Klacht met tabel of grafiek</div>
+              <div class="subtype-name-en">Complaint using a table or graph — describe data</div>
+              <div class="subtype-meta">
+                <span class="tag formal">formeel</span>
+                <span class="tag words">120–150 w</span>
+              </div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Aanpak / Approach</div>
+            <div class="template-box">1. Beschrijf KORT wat je in de tabel/grafiek ziet (1–2 zinnen)
+2. Leg uit wat het probleem is
+3. Doe een voorstel voor oplossing
+
+Zinnen voor grafiek beschrijven:
+"Uit de grafiek blijkt dat <span class="fill-word">[wat]</span>."
+"In de tabel is te zien dat <span class="fill-word">[wat]</span>."
+"Het aantal <span class="fill-word">[X]</span> is gestegen/gedaald van <span class="fill-word">[getal]</span> naar <span class="fill-word">[getal]</span>."
+"Vergeleken met <span class="fill-word">[vorig jaar/andere groep]</span> is <span class="fill-word">[wat]</span> meer/minder."</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VERZOEK -->
+    <div id="verzoek" class="section">
+      <div class="section-header">
+        <div class="section-title">Verzoek schrijven</div>
+        <div class="section-subtitle">Writing a request — kort of middellang · 60–150 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Formeel verzoek (gemeente, werkgever, school)</div>
+              <div class="subtype-name-en">Formal request — municipality, employer, school</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">100–150 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw]</span>,
+
+Mijn naam is <span class="fill-word">[naam]</span>. Ik <span class="fill-word">[woon op / werk bij / volg de opleiding aan]</span> <span class="fill-word">[adres/naam]</span>.
+
+Ik schrijf u omdat ik graag <span class="fill-word">[wat wil je]</span>. De reden is <span class="fill-word">[waarom]</span>.
+
+Zou u mij kunnen helpen met <span class="fill-word">[verzoek]</span>? Ik zou u hier erg dankbaar voor zijn.
+
+Als u meer informatie nodig heeft, kunt u mij bereiken via <span class="fill-word">[e-mail/telefoon]</span>.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Informeel verzoek (buurman, collega, vriend)</div>
+              <div class="subtype-name-en">Informal request — neighbour, colleague, friend</div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+
+Ik ga <span class="fill-word">[weg / op vakantie / naar het ziekenhuis]</span> en ik vroeg me af of jij <span class="fill-word">[wat]</span> kunt doen.
+
+Het gaat om <span class="fill-word">[beschrijving: mijn planten water geven / op de kat passen / de post ophalen]</span>. Het is maar voor <span class="fill-word">[hoe lang]</span>.
+
+Kun jij dat doen? Laat het me weten!
+
+Groetjes,
+<span class="fill-word">[Naam]</span></div>
+            <div class="tip-box"><strong>Informeel = jij/je</strong> in plaats van u · "Kun jij" niet "Kunt u" · Afsluiting: "Groetjes" of "Bedankt!" niet "Met vriendelijke groet"</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Verlof / afwezigheid melden</div>
+              <div class="subtype-name-en">Reporting absence or requesting leave</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">60–100 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[naam/heer/mevrouw]</span>,
+
+Ik wil u laten weten dat ik op <span class="fill-word">[datum / van datum tot datum]</span> niet aanwezig kan zijn. De reden is <span class="fill-word">[ziekte / familieomstandigheid / afspraak]</span>.
+
+Ik zal <span class="fill-word">[het gemiste werk inhalen / mijn taken overdragen aan collega X]</span>.
+
+Excuses voor het ongemak.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SOLLICITATIE -->
+    <div id="sollicitatie" class="section">
+      <div class="section-header">
+        <div class="section-title">Sollicitatie schrijven</div>
+        <div class="section-subtitle">Writing a job application — middellange schrijftaak · 120–150 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Sollicitatiebrief / -e-mail</div>
+              <div class="subtype-name-en">Job application letter or email</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">120–150 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Structuur</div>
+            <div class="structure-pills">
+              <span class="pill">Waar gezien</span><span class="arrow">→</span>
+              <span class="pill">Wie ben je</span><span class="arrow">→</span>
+              <span class="pill">Ervaring</span><span class="arrow">→</span>
+              <span class="pill">Eigenschappen</span><span class="arrow">→</span>
+              <span class="pill">Uitnodiging gesprek</span>
+            </div>
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw + naam]</span>,
+
+Via <span class="fill-word">[de website / een advertentie / een vriend]</span> zag ik dat u zoekt naar een <span class="fill-word">[functie]</span>. Graag solliciteer ik naar deze functie.
+
+Ik ben <span class="fill-word">[naam]</span>, <span class="fill-word">[leeftijd]</span> jaar oud. Ik heb <span class="fill-word">[X jaar]</span> ervaring als <span class="fill-word">[beroep]</span>. In mijn vorige baan heb ik <span class="fill-word">[wat gedaan]</span>.
+
+Ik ben <span class="fill-word">[betrouwbaar / enthousiast / nauwkeurig / communicatief]</span> en ik werk graag <span class="fill-word">[in een team / met klanten / zelfstandig]</span>. Ook kan ik goed <span class="fill-word">[specifieke vaardigheid]</span>.
+
+Ik hoop dat u mij uitnodigt voor een gesprek.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam + contactgegevens]</span></div>
+            <div class="body-label">Handige eigenschappen / Useful adjectives</div>
+            <div class="phrases-grid">
+              <div class="phrase-item"><div class="phrase-nl">betrouwbaar</div><div class="phrase-en">reliable</div></div>
+              <div class="phrase-item"><div class="phrase-nl">gemotiveerd</div><div class="phrase-en">motivated</div></div>
+              <div class="phrase-item"><div class="phrase-nl">nauwkeurig</div><div class="phrase-en">accurate, precise</div></div>
+              <div class="phrase-item"><div class="phrase-nl">flexibel</div><div class="phrase-en">flexible</div></div>
+              <div class="phrase-item"><div class="phrase-nl">communicatief</div><div class="phrase-en">communicative</div></div>
+              <div class="phrase-item"><div class="phrase-nl">klantgericht</div><div class="phrase-en">customer-oriented</div></div>
+              <div class="phrase-item"><div class="phrase-nl">zelfstandig</div><div class="phrase-en">independent</div></div>
+              <div class="phrase-item"><div class="phrase-nl">leergierig</div><div class="phrase-en">eager to learn</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Reactie op afwijzing / doorvragen</div>
+              <div class="subtype-name-en">Response to rejection or follow-up question</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">80–120 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[naam]</span>,
+
+Hartelijk dank voor uw reactie op mijn sollicitatie.
+
+Het spijt me te horen dat ik niet ben uitgenodigd voor een gesprek. Ik begrijp uw beslissing, maar ik wil u vragen of u mij kunt vertellen waarom ik niet ben geselecteerd. Dit helpt mij om mij verder te ontwikkelen.
+
+Ik ben nog steeds erg geïnteresseerd in <span class="fill-word">[bedrijf / sector]</span> en hoop in de toekomst weer te kunnen solliciteren.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- UITNODIGING -->
+    <div id="uitnodiging" class="section">
+      <div class="section-header">
+        <div class="section-title">Uitnodiging schrijven</div>
+        <div class="section-subtitle">Writing an invitation — korte schrijftaak · 60–80 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Feestje / verjaardag / housewarming</div>
+              <div class="subtype-name-en">Party / birthday / housewarming invitation</div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span> / Beste vrienden,
+
+Ik <span class="fill-word">[vier mijn verjaardag / geef een feest / ben verhuisd]</span> en ik wil dat graag met jullie vieren!
+
+Het feest is op <span class="fill-word">[dag datum]</span> om <span class="fill-word">[tijd]</span> uur. Het adres is <span class="fill-word">[adres]</span>.
+
+<span class="fill-word">[Er is eten en drinken / Neem iets te drinken mee / Dresscode: ...]</span>
+
+Ik hoop dat je erbij kunt zijn! Laat het me weten voor <span class="fill-word">[datum]</span>.
+
+Groetjes, <span class="fill-word">[Naam]</span></div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Formele uitnodiging (vergadering, evenement)</div>
+              <div class="subtype-name-en">Formal invitation — meeting, event</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">80–120 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[naam/collega's]</span>,
+
+Hierbij nodig ik u uit voor <span class="fill-word">[vergadering / presentatie / evenement]</span>.
+
+Dit vindt plaats op <span class="fill-word">[datum]</span> om <span class="fill-word">[tijd]</span> uur op <span class="fill-word">[locatie/adres]</span>.
+
+Tijdens <span class="fill-word">[de vergadering / het evenement]</span> bespreken we <span class="fill-word">[onderwerp]</span>. <span class="fill-word">[Eventuele andere info]</span>.
+
+Ik verzoek u vriendelijk te bevestigen of u aanwezig kunt zijn.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam + functie]</span></div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Afwijzen van een uitnodiging</div>
+              <div class="subtype-name-en">Declining an invitation politely</div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words">40–60 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+
+Bedankt voor de uitnodiging! Helaas kan ik er niet bij zijn omdat <span class="fill-word">[reden]</span>. Wat jammer!
+
+Ik hoop dat het een heel fijn feest wordt. <span class="fill-word">[Gefeliciteerd / Veel plezier]</span>!
+
+Groetjes, <span class="fill-word">[naam]</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ADVIES -->
+    <div id="advies" class="section">
+      <div class="section-header">
+        <div class="section-title">Advies & tips geven</div>
+        <div class="section-subtitle">Giving advice — kort of middellang · 80–150 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Tips geven aan collega / vriend</div>
+              <div class="subtype-name-en">Giving tips to colleague or friend</div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">80–120 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+
+Wat <span class="fill-word">[leuk / goed / spannend]</span> dat jij <span class="fill-word">[gaat solliciteren / een presentatie geeft / gaat sporten]</span>! Ik geef je graag wat tips.
+
+Ten eerste: <span class="fill-word">[tip 1]</span>.
+Daarnaast is het belangrijk om <span class="fill-word">[tip 2]</span>.
+Tot slot: <span class="fill-word">[tip 3]</span>.
+
+Vergeet niet: <span class="fill-word">[aanmoediging]</span>. Je kunt het!
+
+Succes! Groetjes, <span class="fill-word">[naam]</span></div>
+            <div class="body-label">Structuurwoorden voor tips / Transition words</div>
+            <div class="phrases-grid">
+              <div class="phrase-item"><div class="phrase-nl">Ten eerste...</div><div class="phrase-en">First of all...</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Daarnaast...</div><div class="phrase-en">In addition...</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Ook belangrijk is...</div><div class="phrase-en">Also important is...</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Tot slot...</div><div class="phrase-en">Finally...</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Vergeet niet...</div><div class="phrase-en">Don't forget...</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Zorg ervoor dat...</div><div class="phrase-en">Make sure that...</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Formeel advies (werknemer, student)</div>
+              <div class="subtype-name-en">Formal advice — employee, student</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">120–150 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[naam]</span>,
+
+Naar aanleiding van ons gesprek stuur ik u hierbij mijn advies over <span class="fill-word">[onderwerp]</span>.
+
+Ik adviseer u om <span class="fill-word">[wat]</span>. Dit is belangrijk omdat <span class="fill-word">[reden]</span>.
+
+Verder raad ik u aan om <span class="fill-word">[tweede advies]</span>. Op deze manier kunt u <span class="fill-word">[resultaat]</span>.
+
+Als u vragen heeft, kunt u altijd contact met mij opnemen.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam + functie]</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- REACTIE -->
+    <div id="reactie" class="section">
+      <div class="section-header">
+        <div class="section-title">Reageren op een bericht</div>
+        <div class="section-subtitle">Responding to a message — varied length · 60–120 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Reageren op goed nieuws</div>
+              <div class="subtype-name-en">Responding to good news</div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+
+Wat <span class="fill-word">[geweldig / fijn / leuk]</span> nieuws! Gefeliciteerd met <span class="fill-word">[nieuwe baan / baby / diploma / huis]</span>!
+
+Ik ben zo blij voor je. <span class="fill-word">[Persoonlijke reactie: dit heb je verdiend / wat een mooie stap]</span>.
+
+We moeten dit vieren! Wanneer spreek je af?
+
+Groetjes, <span class="fill-word">[naam]</span></div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Reageren op slecht nieuws / ziekte</div>
+              <div class="subtype-name-en">Responding to bad news or illness</div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+
+Wat vervelend om te horen dat <span class="fill-word">[je ziek bent / het niet goed gaat / er iets is misgegaan]</span>. Beterschap!
+
+Als ik iets voor je kan doen, laat het me dan weten. Ik kan <span class="fill-word">[boodschappen doen / langskomen / helpen met]</span> als dat fijn is.
+
+Ik denk aan je. Sterkte!
+
+Groetjes, <span class="fill-word">[naam]</span></div>
+            <div class="body-label">Handige uitdrukkingen / Useful phrases</div>
+            <div class="phrases-grid">
+              <div class="phrase-item"><div class="phrase-nl">Beterschap!</div><div class="phrase-en">Get well soon!</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Sterkte!</div><div class="phrase-en">Stay strong! / Hang in there!</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Gecondoleerd</div><div class="phrase-en">My condolences</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Wat vervelend!</div><div class="phrase-en">How awful / What a shame!</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Verontschuldigen / excuses maken</div>
+              <div class="subtype-name-en">Apologising</div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words">60–100 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span> / Geachte <span class="fill-word">[naam]</span>,
+
+Het spijt me dat <span class="fill-word">[wat er is gebeurd / dat ik te laat was / dat ik de afspraak heb gemist]</span>.
+
+De reden was <span class="fill-word">[ik was ziek / er was een probleem / ik had het vergeten]</span>. Dat had niet mogen gebeuren.
+
+Ik hoop dat je/u het me kunt vergeven. <span class="fill-word">[Voorstel om het goed te maken]</span>.
+
+<span class="fill-word">[Groetjes / Met vriendelijke groet]</span>, <span class="fill-word">[naam]</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- INFORMATIE -->
+    <div id="informatie" class="section">
+      <div class="section-header">
+        <div class="section-title">Informatie vragen</div>
+        <div class="section-subtitle">Requesting information — kort · 60–100 woorden</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Informatie vragen over cursus / product / dienst</div>
+              <div class="subtype-name-en">Asking for information about course, product, service</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">60–100 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Template</div>
+            <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw]</span>,
+
+Ik heb interesse in <span class="fill-word">[cursus / product / dienst]</span> en ik wil graag meer informatie.
+
+Kunt u mij vertellen:
+- <span class="fill-word">[Vraag 1: wanneer start de cursus?]</span>
+- <span class="fill-word">[Vraag 2: wat zijn de kosten?]</span>
+- <span class="fill-word">[Vraag 3: waar vindt het plaats?]</span>
+
+Ik zie uw antwoord graag tegemoet.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam + contactgegevens]</span></div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Afspraak maken / bevestigen / verzetten</div>
+              <div class="subtype-name-en">Making, confirming or rescheduling an appointment</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">60–80 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Templates</div>
+            <div class="template-box">Afspraak maken:
+"Ik wil graag een afspraak maken voor <span class="fill-word">[wat]</span>. Bent u beschikbaar op <span class="fill-word">[dag/datum]</span> om <span class="fill-word">[tijd]</span> uur?"
+
+Afspraak verzetten:
+"Helaas moet ik onze afspraak van <span class="fill-word">[datum]</span> verzetten. Zou <span class="fill-word">[nieuwe datum/tijd]</span> mogelijk zijn?"
+
+Afspraak bevestigen:
+"Hierbij bevestig ik onze afspraak op <span class="fill-word">[datum]</span> om <span class="fill-word">[tijd]</span> uur op <span class="fill-word">[locatie]</span>."</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ZINSTAAK -->
+    <div id="zinstaak" class="section">
+      <div class="section-header">
+        <div class="section-title">Zinstaak (opgaven 1–8)</div>
+        <div class="section-subtitle">Sentence tasks — one sentence, usually completing an email context</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Alle situaties met voorbeeldzinnen</div>
+              <div class="subtype-name-en">All situations with example sentences</div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="phrases-grid">
+              <div class="phrase-item">
+                <div class="phrase-nl">Verontschuldigen</div>
+                <div class="phrase-en">Apologising</div>
+              </div>
+              <div class="phrase-item">
+                <div class="phrase-nl">Afwezig melden</div>
+                <div class="phrase-en">Reporting absence</div>
+              </div>
+              <div class="phrase-item">
+                <div class="phrase-nl">Bedanken</div>
+                <div class="phrase-en">Thanking</div>
+              </div>
+              <div class="phrase-item">
+                <div class="phrase-nl">Informatie geven</div>
+                <div class="phrase-en">Giving information</div>
+              </div>
+              <div class="phrase-item">
+                <div class="phrase-nl">Reageren op nieuws</div>
+                <div class="phrase-en">Reacting to news</div>
+              </div>
+              <div class="phrase-item">
+                <div class="phrase-nl">Iets bevestigen</div>
+                <div class="phrase-en">Confirming something</div>
+              </div>
+            </div>
+            <div class="body-label">Voorbeeldzinnen per situatie</div>
+            <div class="template-box">VERONTSCHULDIGEN:
+"Het spijt me dat ik <span class="fill-word">[te laat was / de vergadering heb gemist / dit heb vergeten]</span>."
+"Excuses voor het ongemak."
+
+AFWEZIG MELDEN:
+"Ik kan helaas niet aanwezig zijn bij <span class="fill-word">[wat]</span> omdat <span class="fill-word">[reden]</span>."
+"Ik ben op <span class="fill-word">[datum]</span> ziek en kan daarom niet komen."
+
+BEDANKEN:
+"Hartelijk bedankt voor <span class="fill-word">[uw hulp / de informatie / het gesprek / uw reactie]</span>."
+"Bedankt dat u de tijd heeft genomen om <span class="fill-word">[wat]</span>."
+
+GOED NIEUWS MELDEN:
+"Ik ben blij u te laten weten dat <span class="fill-word">[wat]</span>."
+"Ik wil u informeren dat <span class="fill-word">[wat]</span>."
+
+REAGEREN OP NIEUWS:
+"Gefeliciteerd met <span class="fill-word">[nieuwe baan / diploma / baby]</span>!"
+"Wat vervelend dat <span class="fill-word">[je ziek bent / dat is misgegaan]</span>."
+"Beterschap!"
+
+BEVESTIGEN:
+"Ik bevestig dat ik aanwezig zal zijn op <span class="fill-word">[datum]</span>."
+"Hierbij bevestig ik de afspraak van <span class="fill-word">[datum]</span>."
+
+IETS VRAGEN:
+"Kunt u mij vertellen <span class="fill-word">[wat/wanneer/hoe]</span>?"
+"Zou u mij kunnen helpen met <span class="fill-word">[wat]</span>?"
+
+GEVOLG/REDEN (let op: dus/want/omdat):
+"Ik was ziek, <span class="fill-word">dus</span> kon ik niet komen."
+"Ik kon niet komen <span class="fill-word">omdat</span> ik ziek was."
+"Ik ben blij <span class="fill-word">want</span> ik heb de baan gekregen."</div>
+            <div class="tip-box"><strong>Let op "dus/want/omdat":</strong> als je het woordje in de zin ziet, weet je wat voor soort aanvulling je moet schrijven. "Dus" = gevolg · "Want" = reden (hoofdzin) · "Omdat" = reden (bijzin, werkwoord achteraan)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- FORMULIER -->
+    <div id="formulier" class="section">
+      <div class="section-header">
+        <div class="section-title">Formulier invullen (opgave 10)</div>
+        <div class="section-subtitle">Filling in a form — deelschrijftaak</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Aanvraagformulier / registratieformulier</div>
+              <div class="subtype-name-en">Application or registration form</div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Veelvoorkomende velden / Common fields</div>
+            <div class="template-box">Voornaam:          <span class="fill-word">[jouw voornaam]</span>
+Achternaam:        <span class="fill-word">[jouw achternaam]</span>
+Geboortedatum:     <span class="fill-word">[dag-maand-jaar, bijv. 15-03-1985]</span>
+Adres:             <span class="fill-word">[straatnaam + huisnummer]</span>
+Postcode + stad:   <span class="fill-word">[1234 AB Amsterdam]</span>
+Telefoonnummer:    <span class="fill-word">[06-12345678]</span>
+E-mailadres:       <span class="fill-word">[naam@email.nl]</span>
+Nationaliteit:     <span class="fill-word">[Russisch / Nederlands / ...]</span>
+Beroep:            <span class="fill-word">[wat je doet]</span>
+Reden van aanvraag: <span class="fill-word">[2–3 volledige zinnen]</span>
+Datum:             <span class="fill-word">[vandaag, bijv. 10 maart 2026]</span>
+Handtekening/Naam: <span class="fill-word">[volledige naam]</span></div>
+            <div class="tip-box"><strong>Vuistregel:</strong> Vul ALLES in · Schrijf volledige zinnen waar dat gevraagd wordt · Gebruik de info uit de opdracht · Verzin geen extra info die niet gevraagd is · De motivatie/reden: 2–3 concrete zinnen</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Kort bericht aanvullen (opgave 9)</div>
+              <div class="subtype-name-en">Completing a short message</div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Aanpak</div>
+            <div class="template-box">1. Lees het hele bericht eerst — wat is de context?
+2. Lees wat je moet aanvullen (er staat [__] of een instructie)
+3. Zorg dat je aanvulling:
+   - Past bij de toon (formeel/informeel)
+   - Past bij de inhoud van de omringende tekst
+   - Grammaticaal correct is
+   - De gevraagde informatie bevat
+
+Typische opdrachten:
+- "Schrijf een reactie op dit bericht"
+- "Vul de ontbrekende zin in"
+- "Schrijf de aanhef en afsluiting"
+- "Voeg de reden toe"</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- AANHEF -->
+    <div id="aanhef" class="section">
+      <div class="section-header">
+        <div class="section-title">Aanhef & afsluiting</div>
+        <div class="section-subtitle">Opening & closing — formeel vs. informeel</div>
+      </div>
+
+      <div class="two-col">
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div><div class="subtype-name">Formeel</div><div class="subtype-name-en">Formal — business, municipality, unknown person</div></div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Aanhef</div>
+            <div class="template-box">Geachte heer <span class="fill-word">[achternaam]</span>,
+Geachte mevrouw <span class="fill-word">[achternaam]</span>,
+Geachte heer/mevrouw,  <span class="fill-word">(naam onbekend)</span>
+Geachte <span class="fill-word">[naam]</span>,</div>
+            <div class="body-label">Afsluiting</div>
+            <div class="template-box">Met vriendelijke groet,
+Hoogachtend,  <span class="fill-word">(zeer formeel)</span>
+Met vriendelijke groeten,</div>
+          </div>
+        </div>
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div><div class="subtype-name">Informeel</div><div class="subtype-name-en">Informal — friend, colleague, neighbour</div></div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Aanhef</div>
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+Beste <span class="fill-word">[naam]</span>,
+Lieve <span class="fill-word">[naam]</span>,  <span class="fill-word">(familie/goede vriend)</span>
+Hé <span class="fill-word">[naam]</span>,  <span class="fill-word">(heel informeel)</span></div>
+            <div class="body-label">Afsluiting</div>
+            <div class="template-box">Groetjes,
+Groeten,
+Tot snel!
+Dikke knuffel,  <span class="fill-word">(familie)</span>
+Bedankt!</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subtype-card" style="margin-top: 1rem;">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">Hoe weet je formeel of informeel?</div><div class="subtype-name-en">How to decide the register?</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">FORMEEL als je schrijft aan:
+→ Een bedrijf, winkel, organisatie
+→ Een gemeente, overheid, school
+→ Een onbekende persoon
+→ Een werkgever, baas, leidinggevende
+→ Een arts, apotheker, professional
+
+INFORMEEL als je schrijft aan:
+→ Een vriend, vriendin
+→ Een familielid
+→ Een buurman/buurvrouw (soms)
+→ Een bekende collega
+
+TWIJFEL? → Kies formeel, dat is altijd veiliger</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VERBINDING -->
+    <div id="verbinding" class="section">
+      <div class="section-header">
+        <div class="section-title">Verbindingswoorden</div>
+        <div class="section-subtitle">Connective words — make your text flow</div>
+      </div>
+      <div class="phrases-grid" style="margin-bottom: 1rem;">
+        <div class="phrase-item"><div class="phrase-nl">Ten eerste... / Allereerst...</div><div class="phrase-en">First of all...</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Daarnaast... / Bovendien...</div><div class="phrase-en">In addition / Furthermore</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Ook... / Tevens...</div><div class="phrase-en">Also / As well</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Tot slot... / Ten slotte...</div><div class="phrase-en">Finally / Lastly</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Omdat... (bijzin)</div><div class="phrase-en">Because (subordinate clause)</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Want... (hoofdzin)</div><div class="phrase-en">Because (main clause)</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Dus... / Daarom...</div><div class="phrase-en">So / Therefore</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Maar... / Echter...</div><div class="phrase-en">But / However</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Helaas...</div><div class="phrase-en">Unfortunately</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Gelukkig...</div><div class="phrase-en">Luckily / Fortunately</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Naar aanleiding van...</div><div class="phrase-en">Further to / Following...</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Met betrekking tot...</div><div class="phrase-en">Regarding / With respect to</div></div>
+      </div>
+
+      <div class="subtype-card">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">Omdat vs. want — het verschil</div><div class="subtype-name-en">The difference between omdat and want</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">OMDAT → bijzin → werkwoord achteraan:
+"Ik kan niet komen <span class="fill-word">omdat</span> ik ziek <span class="fill-word">ben</span>."
+"Ik schrijf u <span class="fill-word">omdat</span> ik een probleem <span class="fill-word">heb</span>."
+
+WANT → hoofdzin → werkwoord op normale plek:
+"Ik kan niet komen, <span class="fill-word">want</span> ik <span class="fill-word">ben</span> ziek."
+"Dit is vervelend, <span class="fill-word">want</span> ik moet morgen werken."
+
+DUS → gevolg → gewone volgorde:
+"Ik was ziek, <span class="fill-word">dus</span> ik <span class="fill-word">kon</span> niet komen."</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEOORDELING -->
+    <div id="beoordeling" class="section">
+      <div class="section-header">
+        <div class="section-title">Beoordelingscriteria</div>
+        <div class="section-subtitle">How your writing is graded</div>
+      </div>
+
+      <div class="score-box">
+        <div class="body-label">Criteria per onderdeel</div>
+        <div class="score-grid">
+          <div class="score-item">
+            <div class="score-name">Adequaatheid</div>
+            <div class="score-en">Did you do everything the task asks?</div>
+            <div class="score-bar"><div class="score-fill" style="width: 100%"></div></div>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Begrijpelijkheid</div>
+            <div class="score-en">Can the reader understand you?</div>
+            <div class="score-bar"><div class="score-fill" style="width: 100%"></div></div>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Grammatica</div>
+            <div class="score-en">Are sentences grammatically correct?</div>
+            <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Spelling</div>
+            <div class="score-en">Correct spelling (incl. dt-rule)</div>
+            <div class="score-bar"><div class="score-fill" style="width: 70%"></div></div>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Samenhang</div>
+            <div class="score-en">Does the text flow logically?</div>
+            <div class="score-bar"><div class="score-fill" style="width: 75%"></div></div>
+          </div>
+          <div class="score-item">
+            <div class="score-name">Woordgebruik</div>
+            <div class="score-en">Appropriate words for the situation?</div>
+            <div class="score-bar"><div class="score-fill" style="width: 70%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="subtype-card open">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">Checklist voor elke opdracht</div><div class="subtype-name-en">Checklist for every task</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">□ Heb ik de opdracht 2x gelezen?
+□ Heb ik ALLE gevraagde punten verwerkt?
+□ Is de toon juist? (formeel/informeel)
+□ Heb ik de juiste aanhef en afsluiting?
+□ Zijn mijn zinnen begrijpelijk?
+□ Heb ik verbindingswoorden gebruikt?
+□ Heb ik de dt-regel goed toegepast?
+□ Heb ik het goede aantal woorden geschreven?
+□ Heb ik mijn naam ondertekend?</div>
+          <div class="tip-box"><strong>Regel #1 — adequaatheid:</strong> Als je niet alles doet wat de opdracht vraagt, kun je nooit een hoge score halen, ook al is je Nederlands perfect. Lees de opdracht altijd minstens 2x en streep elk punt aan.</div>
+        </div>
+      </div>
+
+      <div class="subtype-card" style="margin-top: 1rem;">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">De dt-regel in één minuut</div><div class="subtype-name-en">The dt-rule in one minute</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">Stam van het werkwoord = de hij-vorm minus -t:
+"hij werkt" → stam = "werk"
+
+Tegenwoordige tijd:
+ik werk       (geen t)
+jij werkt     (met t, tenzij inversie: "werk jij")
+hij/zij werkt (met t)
+
+Verleden tijd:
+Zacht klinker aan einde stam (t, k, f, s, ch, p = 't kofschip):
+→ -te / -ten:  "ik werkte, wij werkten"
+Anders:
+→ -de / -den:  "ik leefde" — wacht, 'f' is in 't kofschip → "ik leefde"? 
+Nee: stam van leven = "leef" → 'f' in kofschip → "leefde" ✓
+
+Makkelijkste test: vervang het werkwoord door "werken":
+"hij werkt" → "hij word-t" → "hij wordt" ✓
+"gewerkt / geword-t" → gebruik de t-versie als stam eindigt op t</div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script>
+function show(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.top-nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const navItems = document.querySelectorAll('.nav-item');
+  navItems.forEach(n => { if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active'); });
+  const topItems = document.querySelectorAll('.top-nav-item');
+  topItems.forEach(n => { if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active'); });
+}
+
+function toggle(header) {
+  const card = header.closest('.subtype-card');
+  card.classList.toggle('open');
+}
+
+const sections = [
+  {id:'klacht', label:'Klacht'}, {id:'verzoek', label:'Verzoek'}, {id:'sollicitatie', label:'Sollicitatie'},
+  {id:'uitnodiging', label:'Uitnodiging'}, {id:'advies', label:'Advies'}, {id:'reactie', label:'Reactie'},
+  {id:'informatie', label:'Informatie'}, {id:'zinstaak', label:'Zinstaak'}, {id:'formulier', label:'Formulier'},
+  {id:'aanhef', label:'Aanhef'}, {id:'verbinding', label:'Verbinding'}, {id:'beoordeling', label:'Criteria'}
+];
+const topNav = document.getElementById('topNav');
+sections.forEach(s => {
+  const el = document.createElement('div');
+  el.className = 'top-nav-item' + (s.id === 'klacht' ? ' active' : '');
+  el.textContent = s.label;
+  el.setAttribute('onclick', "show('" + s.id + "')");
+  topNav.appendChild(el);
+});
+</script>
+</body>
+</html>
