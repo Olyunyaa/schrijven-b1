@@ -139,6 +139,33 @@
 
   .nav-item.active .nav-dot { background: var(--accent); }
 
+  .nav-group-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 1.25rem 0.3rem;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-family: 'DM Mono', monospace;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    user-select: none;
+    transition: color 0.15s;
+  }
+  .nav-group-label:hover { color: var(--accent); }
+  .nav-group-arrow {
+    font-size: 0.6rem;
+    color: var(--hint);
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+  .nav-group.open .nav-group-arrow { transform: rotate(90deg); }
+  .nav-sub-items { display: none; padding-bottom: 0.25rem; }
+  .nav-group.open .nav-sub-items { display: block; }
+  .nav-item.sub { padding-left: 1.9rem; font-size: 0.84rem; }
+
   .main {
     padding: 2rem 2.5rem;
     max-width: 900px;
@@ -490,23 +517,45 @@
 <div class="layout">
   <nav class="sidebar">
     <div class="sidebar-section">
-      <div class="sidebar-label">Письма (11–12)</div>
-      <div class="nav-item active" onclick="show('klacht')"><span class="nav-dot"></span>Жалоба (11–12)</div>
-      <div class="nav-item" onclick="show('verzoek')"><span class="nav-dot"></span>Просьба (11–12)</div>
-      <div class="nav-item" onclick="show('sollicitatie')"><span class="nav-dot"></span>Резюме (11–12)</div>
-      <div class="nav-item" onclick="show('uitnodiging')"><span class="nav-dot"></span>Приглашение (11–12)</div>
-      <div class="nav-item" onclick="show('advies')"><span class="nav-dot"></span>Совет (11–12)</div>
-      <div class="nav-item" onclick="show('reactie')"><span class="nav-dot"></span>Ответ (11–12)</div>
-      <div class="nav-item" onclick="show('informatie')"><span class="nav-dot"></span>Запрос инфо (11–12)</div>
-      <div class="nav-item" onclick="show('tevredenheid')"><span class="nav-dot"></span>Опрос удовл. (11–12)</div>
-      <div class="nav-item" onclick="show('planning')"><span class="nav-dot"></span>Изм. расписания (11–12)</div>
-      <div class="nav-item" onclick="show('stageverslag')"><span class="nav-dot"></span>Отчёт о стажировке (11–12)</div>
+      <div class="nav-group">
+        <div class="nav-group-label" onclick="toggleGroup(this)">Задания 1–8 <span class="nav-group-arrow">▶</span></div>
+        <div class="nav-sub-items">
+          <div class="nav-item sub" onclick="show('zinstaak')"><span class="nav-dot"></span>Написать предложение</div>
+        </div>
+      </div>
     </div>
     <div class="sidebar-section">
-      <div class="sidebar-label">Части экзамена</div>
-      <div class="nav-item" onclick="show('zinstaak')"><span class="nav-dot"></span>Предложения (1–8)</div>
-      <div class="nav-item" onclick="show('deelschrijf')"><span class="nav-dot"></span>Дополнить текст (9)</div>
-      <div class="nav-item" onclick="show('formulier')"><span class="nav-dot"></span>Анкета (10)</div>
+      <div class="nav-group">
+        <div class="nav-group-label" onclick="toggleGroup(this)">Задание 9 <span class="nav-group-arrow">▶</span></div>
+        <div class="nav-sub-items">
+          <div class="nav-item sub" onclick="show('deelschrijf')"><span class="nav-dot"></span>Дополнить текст</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="nav-group">
+        <div class="nav-group-label" onclick="toggleGroup(this)">Задание 10 <span class="nav-group-arrow">▶</span></div>
+        <div class="nav-sub-items">
+          <div class="nav-item sub" onclick="show('formulier')"><span class="nav-dot"></span>Заполнить анкету</div>
+        </div>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="nav-group open">
+        <div class="nav-group-label" onclick="toggleGroup(this)">Задания 11–12 <span class="nav-group-arrow">▶</span></div>
+        <div class="nav-sub-items">
+          <div class="nav-item sub active" onclick="show('klacht')"><span class="nav-dot"></span>Жалоба</div>
+          <div class="nav-item sub" onclick="show('verzoek')"><span class="nav-dot"></span>Просьба</div>
+          <div class="nav-item sub" onclick="show('sollicitatie')"><span class="nav-dot"></span>Резюме</div>
+          <div class="nav-item sub" onclick="show('uitnodiging')"><span class="nav-dot"></span>Приглашение</div>
+          <div class="nav-item sub" onclick="show('advies')"><span class="nav-dot"></span>Совет</div>
+          <div class="nav-item sub" onclick="show('reactie')"><span class="nav-dot"></span>Ответ</div>
+          <div class="nav-item sub" onclick="show('informatie')"><span class="nav-dot"></span>Запрос инфо</div>
+          <div class="nav-item sub" onclick="show('tevredenheid')"><span class="nav-dot"></span>Опрос удовлетворённости</div>
+          <div class="nav-item sub" onclick="show('planning')"><span class="nav-dot"></span>Изменение расписания</div>
+          <div class="nav-item sub" onclick="show('stageverslag')"><span class="nav-dot"></span>Отчёт о стажировке</div>
+        </div>
+      </div>
     </div>
     <div class="sidebar-section">
       <div class="sidebar-label">Справочник</div>
@@ -1729,15 +1778,25 @@ function show(id) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.querySelectorAll('.top-nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById(id).classList.add('active');
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(n => { if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active'); });
-  const topItems = document.querySelectorAll('.top-nav-item');
-  topItems.forEach(n => { if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active'); });
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) {
+      n.classList.add('active');
+      const group = n.closest('.nav-group');
+      if (group) group.classList.add('open');
+    }
+  });
+  document.querySelectorAll('.top-nav-item').forEach(n => {
+    if (n.getAttribute('onclick') && n.getAttribute('onclick').includes("'" + id + "'")) n.classList.add('active');
+  });
 }
 
 function toggle(header) {
   const card = header.closest('.subtype-card');
   card.classList.toggle('open');
+}
+
+function toggleGroup(label) {
+  label.closest('.nav-group').classList.toggle('open');
 }
 
 const sections = [
