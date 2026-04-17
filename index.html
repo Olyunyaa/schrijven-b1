@@ -168,7 +168,7 @@
 
   .main {
     padding: 2rem 2.5rem;
-    max-width: 900px;
+    max-width: 1200px;
   }
 
   .section { display: none; }
@@ -312,6 +312,42 @@
   }
 
   .fill-word { color: var(--fill); font-weight: 500; }
+
+  .template-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 0.25rem;
+  }
+
+  .template-pair .template-box,
+  .template-pair .example-box { margin-top: 0; }
+
+  .template-pair-labels {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .template-pair-labels .body-label { margin: 0; }
+
+  .example-box {
+    background: #EAF3EA;
+    border: 1px solid #C5D9C5;
+    border-radius: var(--radius);
+    padding: 1rem 1.1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.8rem;
+    line-height: 1.85;
+    white-space: pre-wrap;
+  }
+
+  @media (max-width: 768px) {
+    .template-pair { grid-template-columns: 1fr; }
+    .template-pair-labels { grid-template-columns: 1fr; }
+  }
 
   .tip-box {
     margin-top: 0.75rem;
@@ -635,7 +671,8 @@ Met vriendelijke groet,
               <span class="pill">Gevolg voor jou</span><span class="arrow">→</span>
               <span class="pill">Verzoek</span>
             </div>
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw]</span>,
 
 Mijn naam is <span class="fill-word">[naam]</span> en ik woon/werk <span class="fill-word">[op adres / in afdeling]</span>.
@@ -648,6 +685,22 @@ Ik vraag u vriendelijk om hier iets aan te doen. <span class="fill-word">[Specif
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam + adres/afdeling]</span></div>
+            <div class="example-box">Geachte directie,
+
+Ik schrijf u namens de studentenraad, omdat er een groot probleem is met afval binnen en buiten de school. Het is niet goed voor studenten en docenten om in een vies gebouw te zijn.
+
+Een schone school is heel belangrijk. Ten eerste is het niet goed om te leren met afval. Ten tweede kan afval ziekte veroorzaken.
+
+Daarom stel ik de volgende oplossingen voor:
+— Wij kunnen studenten om hulp met afval vragen. Wij kunnen vrijwilligers vinden.
+— De school kan een schoonspecialist aannemen.
+
+De tweede oplossing is de beste, maar duurder.
+
+Bovendien stel ik voor een gesprek. Kunt u op donderdag 1 mei om 12 uur een vergadering hebben?
+
+Met vriendelijke groet,</div>
+            </div>
             <div class="tip-box"><strong>Важно:</strong> пиши конкретно — не "het is slecht", а "de muziek gaat tot 2 uur 's nachts" · Всегда указывай, чего ты хочешь</div>
           </div>
         </div>
@@ -865,7 +918,8 @@ Met vriendelijke groet,
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span> / Beste vrienden,
 
 Ik <span class="fill-word">[vier mijn verjaardag / geef een feest / ben verhuisd]</span> en ik wil dat graag met jullie vieren!
@@ -877,6 +931,21 @@ Het feest is op <span class="fill-word">[dag datum]</span> om <span class="fill-
 Ik hoop dat je erbij kunt zijn! Laat het me weten voor <span class="fill-word">[datum]</span>.
 
 Groetjes, <span class="fill-word">[Naam]</span></div>
+            <div class="example-box">Hoi allemaal,
+
+Ik heb mijn 30-jarig feestje volgende maand en ik wil dat graag met jullie vieren!
+
+Het feest is op 10 mei 2026 om 19 uur in Heiloo.
+
+We gaan karaoke doen en dansen!
+
+Breng je kinderen en/of honden mee.
+
+Ik hoop dat je erbij kunt zijn! Laat het me weten voor 20 april.
+
+Groetjes,
+Olya</div>
+            </div>
           </div>
         </div>
 
@@ -890,7 +959,8 @@ Groetjes, <span class="fill-word">[Naam]</span></div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Geachte <span class="fill-word">[naam/collega's]</span>,
 
 Hierbij nodig ik u uit voor <span class="fill-word">[vergadering / presentatie / evenement]</span>.
@@ -903,6 +973,16 @@ Ik verzoek u vriendelijk te bevestigen of u aanwezig kunt zijn.
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam + functie]</span></div>
+            <div class="example-box">Beste bewoners,
+
+Hierbij nodig ik u uit voor een vergadering over twee onderwerpen. Ten eerste bespreken wij het probleem met pakketjes in het gebouw. Ten tweede plannen wij samen ons lentefeestje voor de bewoners.
+
+De vergadering is op 1 mei 2026 om 19 uur in de lobby van ons appartementencomplex.
+
+Ik hoop dat u erbij kunt zijn. Ik verzoek u vriendelijk te bevestigen of u aanwezig kunt zijn voor 25 april 2026.
+
+Met vriendelijke groet,</div>
+            </div>
           </div>
         </div>
 
@@ -916,7 +996,8 @@ Met vriendelijke groet,
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
 
 Bedankt voor de uitnodiging! Helaas kan ik er niet bij zijn omdat <span class="fill-word">[reden]</span>. Wat jammer!
@@ -924,6 +1005,14 @@ Bedankt voor de uitnodiging! Helaas kan ik er niet bij zijn omdat <span class="f
 Ik hoop dat het een heel fijn feest wordt. <span class="fill-word">[Gefeliciteerd / Veel plezier]</span>!
 
 Groetjes, <span class="fill-word">[naam]</span></div>
+            <div class="example-box">Beste Lars,
+
+Dank je wel voor je uitnodiging voor je verjaardagsfeest! Helaas kan ik niet komen, omdat ik op 17 mei naar Spanje ga. Echter hoop ik dat jij een leuk feest hebt!
+
+Als ik terug ben, moeten we koffie drinken!
+
+Groetjes,</div>
+            </div>
           </div>
         </div>
 
@@ -948,7 +1037,8 @@ Groetjes, <span class="fill-word">[naam]</span></div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
 
 Wat <span class="fill-word">[leuk / goed / spannend]</span> dat jij <span class="fill-word">[gaat solliciteren / een presentatie geeft / gaat sporten]</span>! Ik geef je graag wat tips.
@@ -960,6 +1050,18 @@ Tot slot: <span class="fill-word">[tip 3]</span>.
 Vergeet niet: <span class="fill-word">[aanmoediging]</span>. Je kunt het!
 
 Succes! Groetjes, <span class="fill-word">[naam]</span></div>
+            <div class="example-box">Hoi Polina!
+
+Wat jammer dat je niet weet wat je nu moet doen!
+
+Ik denk dat het heel goed is. Je hebt meer tijd om de beste oplossing te vinden. Bovendien heb je meer tijd voor je kinderen.
+
+Ik geef je graag twee tips. Ten eerste moet je een kleine vakantie nemen — je hebt hard gewerkt! Daarnaast adviseer ik je om goed na te denken over wat je leuk vindt om te doen. Misschien kun je met kinderen werken of honden uitlaten.
+
+Ik weet zeker dat jij de juiste keuze maakt!
+
+Groetjes,</div>
+            </div>
             <div class="body-label">Слова-связки для советов</div>
             <div class="phrases-grid">
               <div class="phrase-item"><div class="phrase-nl">Ten eerste...</div><div class="phrase-en">Во-первых...</div></div>
@@ -982,7 +1084,8 @@ Succes! Groetjes, <span class="fill-word">[naam]</span></div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Geachte <span class="fill-word">[naam]</span>,
 
 Naar aanleiding van ons gesprek stuur ik u hierbij mijn advies over <span class="fill-word">[onderwerp]</span>.
@@ -995,6 +1098,18 @@ Als u vragen heeft, kunt u altijd contact met mij opnemen.
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam + functie]</span></div>
+            <div class="example-box">Geachte meneer Groot,
+
+Ik schrijf u omdat ik heb gemerkt dat veel klanten na een maand stoppen met sporten.
+
+Ik denk dat dit komt door twee redenen. Ten eerste zijn de openingstijden niet handig voor onze klanten. Ten tweede is de prijs na één maand te hoog.
+
+Ik adviseer de openingstijden te veranderen. De nieuwe openingstijden moeten zijn van 7 uur 's ochtends tot 22 uur 's avonds. Daarnaast kunnen de prijzen ook flexibeler worden voor verschillende groepen mensen.
+
+Ik stel voor een vergadering te hebben volgende week donderdag om 11 uur. Kunt u aanwezig zijn?
+
+Met vriendelijke groet,</div>
+            </div>
           </div>
         </div>
 
@@ -1019,7 +1134,8 @@ Met vriendelijke groet,
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
 
 Wat <span class="fill-word">[geweldig / fijn / leuk]</span> nieuws! Gefeliciteerd met <span class="fill-word">[nieuwe baan / baby / diploma / huis]</span>!
@@ -1029,6 +1145,18 @@ Ik ben zo blij voor je. <span class="fill-word">[Persoonlijke reactie: dit heb j
 We moeten dit vieren! Wanneer spreek je af?
 
 Groetjes, <span class="fill-word">[naam]</span></div>
+            <div class="example-box">Hoi Sofia,
+
+Ik ben heel blij om jouw nieuws te horen! Gefeliciteerd!
+
+Weet je al wat je verwacht? Is het een meisje of een jongen? Heb je al besloten op de naam?
+
+Als je hulp nodig hebt met schoonmaken of koken, ik ben er voor jou!
+
+Het is zo leuk dat jij een baby krijgt!
+
+Groetjes,</div>
+            </div>
           </div>
         </div>
 
@@ -1042,7 +1170,8 @@ Groetjes, <span class="fill-word">[naam]</span></div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
 
 Wat vervelend om te horen dat <span class="fill-word">[je ziek bent / het niet goed gaat / er iets is misgegaan]</span>. Beterschap!
@@ -1052,6 +1181,18 @@ Als ik iets voor je kan doen, laat het me dan weten. Ik kan <span class="fill-wo
 Ik denk aan je. Sterkte!
 
 Groetjes, <span class="fill-word">[naam]</span></div>
+            <div class="example-box">Hoi Marco,
+
+Wat vervelend om te horen dat je je baan bent kwijtgeraakt.
+
+Hoe voel jij je? Heb je al plannen?
+
+Als ik iets voor jou kan doen, laat het me dan weten! Ik kan je CV bekijken en daar tips over geven.
+
+Ik weet zeker dat jij snel iets nieuws vindt! Sterkte!
+
+Groetjes,</div>
+            </div>
             <div class="body-label">Полезные выражения</div>
             <div class="phrases-grid">
               <div class="phrase-item"><div class="phrase-nl">Beterschap!</div><div class="phrase-en">Выздоравливай!</div></div>
@@ -1072,7 +1213,8 @@ Groetjes, <span class="fill-word">[naam]</span></div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span> / Geachte <span class="fill-word">[naam]</span>,
 
 Het spijt me dat <span class="fill-word">[wat er is gebeurd / dat ik te laat was / dat ik de afspraak heb gemist]</span>.
@@ -1082,6 +1224,20 @@ De reden was <span class="fill-word">[ik was ziek / er was een probleem / ik had
 Ik hoop dat je/u het me kunt vergeven. <span class="fill-word">[Voorstel om het goed te maken]</span>.
 
 <span class="fill-word">[Groetjes / Met vriendelijke groet]</span>, <span class="fill-word">[naam]</span></div>
+            <div class="example-box">Geachte mevrouw Zut,
+
+Ik schrijf u omdat ik gisteren een vergadering heb gemist. Het spijt me wat er is gebeurd.
+
+Ik had veel verschillende werkzaamheden en ik was de vergadering vergeten.
+
+Ik heb mijn collega gebeld en hij heeft mij alle belangrijke punten van de vergadering verteld.
+
+Ik ga alle punten voor mijn werk doornemen.
+
+Dit zal niet meer gebeuren.
+
+Met vriendelijke groet,</div>
+            </div>
           </div>
         </div>
 
@@ -1106,7 +1262,8 @@ Ik hoop dat je/u het me kunt vergeven. <span class="fill-word">[Voorstel om het 
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Шаблон</div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
             <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw]</span>,
 
 Ik heb interesse in <span class="fill-word">[cursus / product / dienst]</span> en ik wil graag meer informatie.
@@ -1120,6 +1277,19 @@ Ik zie uw antwoord graag tegemoet.
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam + contactgegevens]</span></div>
+            <div class="example-box">Geachte meneer/mevrouw,
+
+Ik wil een cursus fotografie volgen bij uw fotoschool. Ik wil een fotograaf worden, maar ik heb geen ervaring.
+
+Ik heb uw website bekeken maar ik heb nog drie vragen:
+1. Heeft uw cursus praktische taken? Het is heel belangrijk voor mij om praktische taken te doen.
+2. Hoelang duurt de cursus?
+3. Hoeveel mensen zijn er in de groep?
+
+Als ik mij wil aanmelden, wanneer kan ik dat doen? Hoe kan ik meer informatie krijgen via e-mail?
+
+Met vriendelijke groet,</div>
+            </div>
           </div>
         </div>
 
