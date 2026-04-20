@@ -589,6 +589,7 @@
           <div class="nav-item sub" onclick="show('informatie')"><span class="nav-dot"></span>Запрос инфо</div>
           <div class="nav-item sub" onclick="show('tevredenheid')"><span class="nav-dot"></span>Опрос удовлетворённости</div>
           <div class="nav-item sub" onclick="show('planning')"><span class="nav-dot"></span>Изменение расписания</div>
+          <div class="nav-item sub" onclick="show('informatief')"><span class="nav-dot"></span>Информирование</div>
           <div class="nav-item sub" onclick="show('stageverslag')"><span class="nav-dot"></span>Отчёт о стажировке</div>
         </div>
       </div>
@@ -1996,6 +1997,69 @@ Met vriendelijke groeten,</div>
       </div>
     </div>
 
+    <!-- INFORMATIEF -->
+    <div id="informatief" class="section">
+      <div class="section-header">
+        <div class="section-title">Информирование</div>
+        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card open">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Информационное письмо сотрудникам</div>
+              <div class="subtype-name-en">informatieve brief aan medewerkers</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">120–150 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Aanhef</span><span class="arrow">→</span>
+              <span class="pill">Waarom schrijf je</span><span class="arrow">→</span>
+              <span class="pill">Taken beschrijven</span><span class="arrow">→</span>
+              <span class="pill">Praktische tips</span><span class="arrow">→</span>
+              <span class="pill">Afsluiting</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Beste <span class="fill-word">[nieuwe medewerkers / collega's]</span>,
+
+Welkom bij <span class="fill-word">[bedrijf/organisatie]</span>! Ik schrijf u zodat u informatie heeft over <span class="fill-word">[uw nieuwe werk / de veranderingen]</span>.
+
+<span class="fill-word">[Beschrijf de taken / situatie]</span>.
+
+Daarnaast heb ik <span class="fill-word">[aantal]</span> praktische tips voor u. Ten eerste <span class="fill-word">[tip 1]</span>. Ten tweede <span class="fill-word">[tip 2]</span>.
+
+<span class="fill-word">[Positieve afsluiting]</span>.
+
+Met vriendelijke groet,</div>
+            <div class="example-box">Beste nieuwe medewerkers,
+
+Welkom bij hotel De Strandloper! Ik schrijf u zodat u informatie heeft over uw nieuwe werk.
+
+Uw werkdag bij het hotel ziet er uit drie delen. U moet de lobby en het restaurant schoonmaken.
+
+Daarna moet u koffie en thee voor de bezoekers maken. Bovendien moet u de bezoekers helpen met hun vragen.
+
+Daarnaast heb ik twee praktische tips voor u.
+
+Ten eerste moet u altijd vriendelijk zijn. Soms zijn de bezoekers vervelend, maar u moet in alle gevallen professioneel blijven. Ten tweede is het goed om 10–15 minuten voor uw werkdag te komen, zodat u zich beter kunt voorbereiden.
+
+Wij hebben 10 medewerkers in het team en iedereen is heel gemotiveerd en vriendelijk!
+
+Welkom bij De Strandloper en veel succes!
+
+Met vriendelijke groet,</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- STAGEVERSLAG -->
     <div id="stageverslag" class="section">
       <div class="section-header">
@@ -2102,7 +2166,7 @@ const sections = [
   {id:'klacht', label:'Жалоба 11–12'}, {id:'verzoek', label:'Просьба 11–12'}, {id:'sollicitatie', label:'Резюме 11–12'},
   {id:'uitnodiging', label:'Приглашение 11–12'}, {id:'advies', label:'Совет 11–12'}, {id:'reactie', label:'Ответ 11–12'},
   {id:'informatie', label:'Запрос инфо 11–12'}, {id:'tevredenheid', label:'Опрос 11–12'}, {id:'planning', label:'Расписание 11–12'},
-  {id:'stageverslag', label:'Стажировка 11–12'}, {id:'zinstaak', label:'Предложения 1–8'}, {id:'deelschrijf', label:'Дополнить 9'},
+  {id:'informatief', label:'Информирование 11–12'}, {id:'stageverslag', label:'Стажировка 11–12'}, {id:'zinstaak', label:'Предложения 1–8'}, {id:'deelschrijf', label:'Дополнить 9'},
   {id:'formulier', label:'Анкета 10'}, {id:'aanhef', label:'Обращение'}, {id:'verbinding', label:'Связки'}, {id:'beoordeling', label:'Оценка'}
 ];
 const topNav = document.getElementById('topNav');
