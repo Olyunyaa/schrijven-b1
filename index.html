@@ -437,6 +437,11 @@
     font-family: 'DM Mono', monospace;
     font-size: 0.8rem;
   }
+  .points-table.examples td:last-child {
+    text-align: left;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+  }
 
   .points-table tr:last-child td { border-bottom: none; }
 
@@ -542,9 +547,9 @@
 </header>
 
 <div class="exam-banner">
-  <span>⏱ 100 минут</span>
-  <span>📝 Zinstaak (1–8) · Deelschrijftaak (9) · Formulier (10) · Korte schrijftaak (11–12)</span>
-  <span>📖 Словарь Van Dale разрешён</span>
+  <span>⏱ 100 минут · 12 заданий</span>
+  <span>📝 Zinstaak (1–8) · Deelschrijftaak (9–10) · Korte schrijftaak (11–12)</span>
+  <span>📖 Только Van Dale Pocketwoordenboek NT2 (свой, без пометок)</span>
   <span>✓ Всегда читай ВСЕ пункты задания</span>
 </div>
 
@@ -562,23 +567,16 @@
     </div>
     <div class="sidebar-section">
       <div class="nav-group">
-        <div class="nav-group-label" onclick="toggleGroup(this)">Задание 9 <span class="nav-group-arrow">▶</span></div>
+        <div class="nav-group-label" onclick="toggleGroup(this)">Задания 9–10 <span class="nav-group-arrow">▶</span></div>
         <div class="nav-sub-items">
-          <div class="nav-item sub" onclick="show('deelschrijf')"><span class="nav-dot"></span>Дополнить текст</div>
-        </div>
-      </div>
-    </div>
-    <div class="sidebar-section">
-      <div class="nav-group">
-        <div class="nav-group-label" onclick="toggleGroup(this)">Задание 10 <span class="nav-group-arrow">▶</span></div>
-        <div class="nav-sub-items">
+          <div class="nav-item sub" onclick="show('deelschrijf')"><span class="nav-dot"></span>Дописать письмо</div>
           <div class="nav-item sub" onclick="show('formulier')"><span class="nav-dot"></span>Заполнить анкету</div>
         </div>
       </div>
     </div>
     <div class="sidebar-section">
       <div class="nav-group open">
-        <div class="nav-group-label" onclick="toggleGroup(this)">Задания 11–12 <span class="nav-group-arrow">▶</span></div>
+        <div class="nav-group-label" onclick="toggleGroup(this)">Письма 9–12 <span class="nav-group-arrow">▶</span></div>
         <div class="nav-sub-items">
           <div class="nav-item sub active" onclick="show('klacht')"><span class="nav-dot"></span>Жалоба</div>
           <div class="nav-item sub" onclick="show('verzoek')"><span class="nav-dot"></span>Просьба</div>
@@ -589,6 +587,7 @@
           <div class="nav-item sub" onclick="show('informatie')"><span class="nav-dot"></span>Запрос инфо</div>
           <div class="nav-item sub" onclick="show('tevredenheid')"><span class="nav-dot"></span>Опрос удовлетворённости</div>
           <div class="nav-item sub" onclick="show('planning')"><span class="nav-dot"></span>Изменение расписания</div>
+          <div class="nav-item sub" onclick="show('keuze')"><span class="nav-dot"></span>Выбор по таблице</div>
           <div class="nav-item sub" onclick="show('informatief')"><span class="nav-dot"></span>Информирование</div>
           <div class="nav-item sub" onclick="show('stageverslag')"><span class="nav-dot"></span>Отчёт о стажировке</div>
         </div>
@@ -608,7 +607,7 @@
     <div id="klacht" class="section active">
       <div class="section-header">
         <div class="section-title">Написать жалобу</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -619,7 +618,7 @@
               <div class="subtype-name-en">klacht over product / dienst</div>
               <div class="subtype-meta">
                 <span class="tag formal">formeel</span>
-                <span class="tag words">120–150 w</span>
+                <span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span>
               </div>
             </div>
             <div class="chevron">▼</div>
@@ -627,38 +626,44 @@
           <div class="subtype-body">
             <div class="body-label">Структура</div>
             <div class="structure-pills">
-              <span class="pill">Aanhef</span><span class="arrow">→</span>
-              <span class="pill">Situatie</span><span class="arrow">→</span>
+              <span class="pill">Wat + wanneer gekocht</span><span class="arrow">→</span>
               <span class="pill">Probleem</span><span class="arrow">→</span>
-              <span class="pill">Wat al gedaan</span><span class="arrow">→</span>
-              <span class="pill">Oplossing vragen</span><span class="arrow">→</span>
-              <span class="pill">Afsluiting</span>
+              <span class="pill">Mening + waarom</span><span class="arrow">→</span>
+              <span class="pill">Min. 2 oplossingen</span><span class="arrow">→</span>
+              <span class="pill">Voorkeur + waarom</span><span class="arrow">→</span>
+              <span class="pill">Wat verwacht je</span>
             </div>
             <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
             <div class="template-pair">
-            <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw + naam]</span>,
+            <div class="template-box">Geachte heer, mevrouw,
 
-Ik schrijf u omdat ik een probleem heb met <span class="fill-word">[product/dienst]</span> dat ik op <span class="fill-word">[datum]</span> heb <span class="fill-word">[gekocht/besteld]</span>.
+Op <span class="fill-word">[datum]</span> heb ik bij u <span class="fill-word">[product: merk, kleur, model]</span> <span class="fill-word">[gekocht / besteld]</span>. Helaas <span class="fill-word">[probleem: werkt ... niet / is ... kapot / wordt ... te laat geleverd]</span>.
 
-<span class="fill-word">[Beschrijf het probleem: wat werkt niet, wat is er mis]</span>. Dit is erg vervelend omdat <span class="fill-word">[reden]</span>.
+Dit vind ik erg vervelend, omdat <span class="fill-word">[reden]</span>. Ik heb al <span class="fill-word">[gebeld / een e-mail gestuurd]</span>, maar het probleem is nog niet opgelost.
 
-Ik heb al <span class="fill-word">[gebeld / een e-mail gestuurd / gewacht]</span>, maar het probleem is nog niet opgelost.
+Ik heb twee oplossingen. U kunt <span class="fill-word">[het product repareren / vervangen]</span>. U kunt ook <span class="fill-word">[mijn geld terugbetalen / mij korting geven]</span>.
 
-Ik verzoek u vriendelijk om <span class="fill-word">[repareren / terugbetalen / vervangen / contact opnemen]</span>. Ik hoor graag zo snel mogelijk van u.
+Ik heb liever dat u <span class="fill-word">[oplossing]</span>, omdat <span class="fill-word">[reden]</span>.
+
+Ik verwacht dat u <span class="fill-word">[binnen een week reageert / het probleem snel oplost]</span>.
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam]</span></div>
             <div class="example-box">Geachte heer, mevrouw,
 
-Ik schrijf u omdat ik een probleem heb met een laptop die ik drie maanden geleden heb gekocht bij uw winkel.
+Drie maanden geleden heb ik bij uw winkel een grijze laptop van 700 euro gekocht. Helaas werkt het scherm sinds vorige week niet meer.
 
-Mijn scherm werkt niet meer. Dit is erg vervelend want ik kan mijn laptop niet gebruiken en mijn werk niet doen. Ik heb al gebeld, maar het probleem is nog niet opgelost.
+Dit vind ik erg vervelend, want ik heb mijn laptop elke dag nodig voor mijn werk. Ik heb al twee keer gebeld, maar het probleem is nog niet opgelost.
 
-Ik verzoek u vriendelijk om mijn laptop te repareren of het aankoopbedrag terug te betalen. Ik zie uw reactie graag tegemoet vóór 10 mei 2026.
+Ik heb twee oplossingen. U kunt mijn laptop gratis repareren. U kunt ook het aankoopbedrag terugbetalen.
+
+Ik heb liever dat u de laptop repareert, omdat ik verder heel tevreden ben over deze laptop.
+
+Ik verwacht dat u binnen een week contact met mij opneemt.
 
 Met vriendelijke groet,</div>
             </div>
-            <div class="tip-box"><strong>Ключевые фразы:</strong> "Ik schrijf u omdat..." · "Helaas..." · "Dit is erg vervelend" · "Ik verzoek u vriendelijk om..." · "Ik hoor graag zo snel mogelijk van u"</div>
+            <div class="tip-box"><strong>Как в экзамене 2025 («Levering bank»):</strong> что заказал(а) и когда · что не так · что ты об этом думаешь и почему · <u>минимум 2 решения</u> · какое предпочитаешь и почему · чего ждёшь от компании. Ключевые фразы: «Helaas…» · «Dit vind ik erg vervelend, omdat…» · «Ik heb liever dat u…» · «Ik verwacht dat u…»</div>
           </div>
         </div>
 
@@ -669,7 +674,7 @@ Met vriendelijke groet,</div>
               <div class="subtype-name-en">klacht over situatie — buren, werk, school</div>
               <div class="subtype-meta">
                 <span class="tag formal">formeel</span>
-                <span class="tag words">120–150 w</span>
+                <span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span>
               </div>
             </div>
             <div class="chevron">▼</div>
@@ -699,17 +704,13 @@ Met vriendelijke groet,
 <span class="fill-word">[Naam + adres/afdeling]</span></div>
             <div class="example-box">Geachte directie,
 
-Ik schrijf u namens de studentenraad, omdat er een groot probleem is met afval binnen en buiten de school. Het is niet goed voor studenten en docenten om in een vies gebouw te zijn.
+Ik schrijf u namens de studentenraad, omdat er een groot probleem is met afval in en rond de school. In de kantine en op het schoolplein ligt elke dag veel rommel.
 
-Een schone school is heel belangrijk. Ten eerste is het niet goed om te leren met afval. Ten tweede kan afval ziekte veroorzaken.
+Een schone school is heel belangrijk. Ten eerste kun je niet goed leren in een vieze omgeving. Ten tweede kan afval ziektes veroorzaken.
 
-Daarom stel ik de volgende oplossingen voor:
-— Wij kunnen studenten om hulp met afval vragen. Wij kunnen vrijwilligers vinden.
-— De school kan een schoonspecialist aannemen.
+Daarom stel ik twee oplossingen voor. Ten eerste kunnen wij studenten vragen om te helpen met opruimen. Ten tweede kan de school een extra schoonmaker aannemen. De tweede oplossing is beter, maar wel duurder.
 
-De tweede oplossing is de beste, maar duurder.
-
-Bovendien stel ik voor een gesprek. Kunt u op donderdag 1 mei om 12 uur een vergadering hebben?
+Bovendien stel ik een gesprek voor. Heeft u op donderdag 7 mei om 12.00 uur tijd?
 
 Met vriendelijke groet,</div>
             </div>
@@ -721,25 +722,63 @@ Met vriendelijke groet,</div>
           <div class="subtype-header" onclick="toggle(this)">
             <div>
               <div class="subtype-name">Жалоба с таблицей или графиком</div>
-              <div class="subtype-name-en">klacht met tabel of grafiek</div>
+              <div class="subtype-name-en">klacht met tabel of grafiek — cijfers gebruiken</div>
               <div class="subtype-meta">
                 <span class="tag formal">formeel</span>
-                <span class="tag words">120–150 w</span>
+                <span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span>
               </div>
             </div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Подход</div>
-            <div class="template-box">1. Beschrijf KORT wat je in de tabel/grafiek ziet (1–2 zinnen)
-2. Leg uit wat het probleem is
-3. Doe een voorstel voor oplossing
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Waarom schrijf je</span><span class="arrow">→</span>
+              <span class="pill">Wat zie je in de tabel (cijfers!)</span><span class="arrow">→</span>
+              <span class="pill">Waarom is dat een probleem</span><span class="arrow">→</span>
+              <span class="pill">Min. 2 oplossingen</span><span class="arrow">→</span>
+              <span class="pill">Wat verwacht je</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Geachte heer, mevrouw,
 
-Zinnen voor grafiek beschrijven:
-"Uit de grafiek blijkt dat <span class="fill-word">[wat]</span>."
-"In de tabel is te zien dat <span class="fill-word">[wat]</span>."
-"Het aantal <span class="fill-word">[X]</span> is gestegen/gedaald van <span class="fill-word">[getal]</span> naar <span class="fill-word">[getal]</span>."
-"Vergeleken met <span class="fill-word">[vorig jaar/andere groep]</span> is <span class="fill-word">[wat]</span> meer/minder."</div>
+Ik schrijf u omdat ik ontevreden ben over <span class="fill-word">[onderwerp]</span>.
+
+Uit de tabel blijkt dat <span class="fill-word">[cijfer 1]</span>. Ook is te zien dat <span class="fill-word">[cijfer 2]</span>. Vergeleken met <span class="fill-word">[vorig jaar / vorige maand]</span> is <span class="fill-word">[wat]</span> <span class="fill-word">[gestegen / gedaald]</span> van <span class="fill-word">[getal]</span> naar <span class="fill-word">[getal]</span>.
+
+Dit is een probleem, omdat <span class="fill-word">[gevolg]</span>.
+
+Ik stel voor om <span class="fill-word">[oplossing 1]</span> te <span class="fill-word">[doen]</span>. Een andere oplossing is <span class="fill-word">[oplossing 2]</span>.
+
+Ik hoop dat u <span class="fill-word">[verwachting]</span>.
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+            <div class="example-box">Geachte heer, mevrouw,
+
+Ik schrijf u omdat ik ontevreden ben over buslijn 14 in Haarlem. Ik neem deze bus elke dag naar mijn werk.
+
+Uit de tabel blijkt dat de bus in maart 18 keer te laat was. In januari was dat nog maar 5 keer. Ook is te zien dat vooral de bus van 7.45 uur vaak te laat komt.
+
+Dit is een probleem, omdat ik daardoor te laat op mijn werk kom. Mijn leidinggevende is daar niet blij mee.
+
+Ik stel voor om 's ochtends een extra bus te laten rijden. Een andere oplossing is een nieuwe dienstregeling met meer tijd tussen de haltes.
+
+Ik hoop dat u het probleem snel oplost.
+
+Met vriendelijke groet,</div>
+            </div>
+            <div class="body-label">Фразы для таблицы и графика</div>
+            <div class="phrases-grid">
+              <div class="phrase-item"><div class="phrase-nl">Uit de tabel blijkt dat…</div><div class="phrase-en">Из таблицы видно, что…</div></div>
+              <div class="phrase-item"><div class="phrase-nl">In de grafiek is te zien dat…</div><div class="phrase-en">На графике видно, что…</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Het aantal … is gestegen van … naar …</div><div class="phrase-en">Количество … выросло с … до …</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Het aantal … is gedaald van … naar …</div><div class="phrase-en">Количество … упало с … до …</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Vergeleken met vorig jaar is … hoger / lager.</div><div class="phrase-en">По сравнению с прошлым годом … выше / ниже.</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Meer dan de helft / 60% van de …</div><div class="phrase-en">Больше половины / 60% …</div></div>
+            </div>
+            <div class="tip-box"><strong>Таблица к письму не прикладывается.</strong> Называй конкретные цифры и даты: не «het is slechter geworden», а «van 5 naar 18 keer». 1–2 цифры достаточно — главное, чтобы были все пункты задания.</div>
           </div>
         </div>
 
@@ -750,7 +789,7 @@ Zinnen voor grafiek beschrijven:
     <div id="verzoek" class="section">
       <div class="section-header">
         <div class="section-title">Написать просьбу</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 60–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -759,7 +798,7 @@ Zinnen voor grafiek beschrijven:
             <div>
               <div class="subtype-name">Формальная просьба (муниципалитет, работодатель, школа)</div>
               <div class="subtype-name-en">formeel verzoek — gemeente, werkgever, school</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">100–150 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈100–150 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -770,9 +809,9 @@ Zinnen voor grafiek beschrijven:
 
 Mijn naam is <span class="fill-word">[naam]</span>. Ik <span class="fill-word">[woon op / werk bij / volg de opleiding aan]</span> <span class="fill-word">[adres/naam]</span>.
 
-Ik schrijf u omdat ik graag <span class="fill-word">[wat wil je]</span>. De reden is <span class="fill-word">[waarom]</span>.
+Ik schrijf u omdat ik graag <span class="fill-word">[wat]</span> wil <span class="fill-word">[aanvragen / veranderen / weten]</span>. Dit is belangrijk voor mij, omdat <span class="fill-word">[reden]</span>.
 
-Zou u mij kunnen helpen met <span class="fill-word">[verzoek]</span>? Ik zou u hier erg dankbaar voor zijn.
+Daarom vraag ik u om <span class="fill-word">[wat]</span> te <span class="fill-word">[doen]</span>. Ik zou u hier erg dankbaar voor zijn.
 
 Als u meer informatie nodig heeft, kunt u mij bereiken via <span class="fill-word">[e-mail/telefoon]</span>.
 
@@ -780,13 +819,13 @@ Met vriendelijke groet,
 <span class="fill-word">[Naam]</span></div>
             <div class="example-box">Geachte heer, mevrouw,
 
-Ik schrijf u omdat er een probleem is in onze straat. Er is geen speelplaats voor kinderen.
+Ik woon in de Lindenstraat en ik schrijf u omdat er in onze straat geen speelplaats voor kinderen is.
 
-Hierdoor kunnen kinderen niet spelen dichtbij hun huizen en dat beperkt hun beweging.
+Daardoor kunnen kinderen niet dicht bij huis spelen. Ze spelen nu vaak op straat en dat is gevaarlijk.
 
-Ik heb twee voorstellen. Ten eerste is er een kleine plek in onze straat waar een speelplaats aangelegd kan worden. Ten tweede zijn er veel ouders in onze straat die geld willen geven om een speelplaats aan te leggen.
+Ik heb twee voorstellen. Ten eerste is er aan het einde van de straat een klein grasveld waar een speelplaats kan komen. Ten tweede willen veel ouders in onze straat meebetalen.
 
-Een speelplaats is heel belangrijk voor kinderen en voor de hele buurt. Kinderen kunnen dan veilig spelen en ouders leren elkaar kennen.
+Daarom vraag ik u om een speelplaats in onze straat aan te leggen. Kinderen kunnen dan veilig spelen en ouders leren elkaar kennen.
 
 Ik zie uw reactie graag tegemoet vóór 10 mei 2026.
 
@@ -800,7 +839,7 @@ Met vriendelijke groet,</div>
             <div>
               <div class="subtype-name">Неформальная просьба (сосед, коллега, друг)</div>
               <div class="subtype-name-en">informeel verzoek — buurman, collega, vriend</div>
-              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–80 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -842,7 +881,7 @@ Groetjes,</div>
             <div>
               <div class="subtype-name">Сообщить об отсутствии / отпуске</div>
               <div class="subtype-name-en">verlof / afwezigheid melden</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">60–100 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–100 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -868,7 +907,7 @@ Met vriendelijke groet,
     <div id="sollicitatie" class="section">
       <div class="section-header">
         <div class="section-title">Написать резюме / сопроводительное письмо</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -877,28 +916,30 @@ Met vriendelijke groet,
             <div>
               <div class="subtype-name">Сопроводительное письмо / e-mail</div>
               <div class="subtype-name-en">sollicitatiebrief / -e-mail</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">120–150 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
             <div class="body-label">Структура</div>
             <div class="structure-pills">
-              <span class="pill">Waar gezien</span><span class="arrow">→</span>
-              <span class="pill">Wie ben je</span><span class="arrow">→</span>
-              <span class="pill">Ervaring</span><span class="arrow">→</span>
-              <span class="pill">Eigenschappen</span><span class="arrow">→</span>
-              <span class="pill">Uitnodiging gesprek</span>
+              <span class="pill">Welke functie</span><span class="arrow">→</span>
+              <span class="pill">Waarom (min. 2 redenen)</span><span class="arrow">→</span>
+              <span class="pill">Werkervaring (min. 1 voorbeeld)</span><span class="arrow">→</span>
+              <span class="pill">Waarom geschikt (min. 2 redenen)</span><span class="arrow">→</span>
+              <span class="pill">Om een gesprek vragen</span>
             </div>
             <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
             <div class="template-pair">
             <div class="template-box">Geachte <span class="fill-word">[heer/mevrouw + naam]</span>,
 
-Via <span class="fill-word">[de website / een advertentie / een vriend]</span> zag ik dat u zoekt naar een <span class="fill-word">[functie]</span>. Graag solliciteer ik naar deze functie.
+Via <span class="fill-word">[de website / een advertentie / een vriend]</span> zag ik dat u een <span class="fill-word">[functie]</span> zoekt. Graag solliciteer ik naar deze functie.
 
-Ik ben <span class="fill-word">[naam]</span>, <span class="fill-word">[leeftijd]</span> jaar oud. Ik heb <span class="fill-word">[X jaar]</span> ervaring als <span class="fill-word">[beroep]</span>. In mijn vorige baan heb ik <span class="fill-word">[wat gedaan]</span>.
+Ik solliciteer naar deze functie, omdat <span class="fill-word">[reden 1]</span>. Daarnaast <span class="fill-word">[reden 2: vind ik het leuk om ... te ...]</span>.
 
-Ik ben <span class="fill-word">[betrouwbaar / enthousiast / nauwkeurig / communicatief]</span> en ik werk graag <span class="fill-word">[in een team / met klanten / zelfstandig]</span>. Ook kan ik goed <span class="fill-word">[specifieke vaardigheid]</span>.
+Ik heb <span class="fill-word">[X jaar]</span> ervaring als <span class="fill-word">[beroep]</span>. Bij <span class="fill-word">[bedrijf]</span> heb ik bijvoorbeeld <span class="fill-word">[wat je deed]</span>.
+
+Ik ben geschikt voor deze functie, omdat ik <span class="fill-word">[betrouwbaar / nauwkeurig / klantgericht]</span> ben. Bovendien <span class="fill-word">[tweede reden: kan ik goed ... / werk ik graag ...]</span>.
 
 Ik hoop dat u mij uitnodigt voor een gesprek.
 
@@ -930,6 +971,7 @@ Olga</div>
               <div class="phrase-item"><div class="phrase-nl">zelfstandig</div><div class="phrase-en">самостоятельный</div></div>
               <div class="phrase-item"><div class="phrase-nl">leergierig</div><div class="phrase-en">стремящийся учиться</div></div>
             </div>
+            <div class="tip-box"><strong>Как в экзамене 2023 («Sollicitatie taxichauffeur»):</strong> на какую должность · почему (минимум 2 причины) · опыт (минимум 1 пример) · почему подходишь (минимум 2 причины) · попросить о собеседовании. Возраст и «кто я» писать не обязательно.</div>
           </div>
         </div>
 
@@ -938,7 +980,7 @@ Olga</div>
             <div>
               <div class="subtype-name">Ответ на отказ / уточняющие вопросы</div>
               <div class="subtype-name-en">reactie op afwijzing / doorvragen</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">80–120 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈80–120 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -977,7 +1019,7 @@ Met vriendelijke groet,</div>
     <div id="uitnodiging" class="section">
       <div class="section-header">
         <div class="section-title">Написать приглашение</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 60–80 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -986,7 +1028,7 @@ Met vriendelijke groet,</div>
             <div>
               <div class="subtype-name">Вечеринка / день рождения / новоселье</div>
               <div class="subtype-name-en">feestje / verjaardag / housewarming</div>
-              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–80 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1001,20 +1043,20 @@ Het feest is op <span class="fill-word">[dag datum]</span> om <span class="fill-
 
 <span class="fill-word">[Er is eten en drinken / Neem iets te drinken mee / Dresscode: ...]</span>
 
-Ik hoop dat je erbij kunt zijn! Laat het me weten voor <span class="fill-word">[datum]</span>.
+Ik hoop dat <span class="fill-word">[je erbij kunt / jullie erbij kunnen]</span> zijn! Laat het me weten vóór <span class="fill-word">[datum]</span>.
 
 Groetjes, <span class="fill-word">[Naam]</span></div>
             <div class="example-box">Hoi allemaal,
 
-Ik heb mijn 30-jarig feestje volgende maand en ik wil dat graag met jullie vieren!
+Volgende maand word ik 30 en dat wil ik graag met jullie vieren!
 
-Het feest is op 10 mei 2026 om 19 uur in Heiloo.
+Het feest is op zaterdag 9 mei om 19.00 uur bij mij thuis in Heiloo.
 
-We gaan karaoke doen en dansen!
+We gaan karaoke zingen en dansen!
 
-Breng je kinderen en/of honden mee.
+Jullie kinderen en honden zijn ook welkom.
 
-Ik hoop dat je erbij kunt zijn! Laat het me weten voor 20 april.
+Ik hoop dat jullie erbij kunnen zijn! Laat het me weten vóór 20 april.
 
 Groetjes,
 Olya</div>
@@ -1027,7 +1069,7 @@ Olya</div>
             <div>
               <div class="subtype-name">Формальное приглашение (собрание, мероприятие)</div>
               <div class="subtype-name-en">formele uitnodiging — vergadering, evenement</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">80–120 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈80–120 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1042,7 +1084,7 @@ Dit vindt plaats op <span class="fill-word">[datum]</span> om <span class="fill-
 
 Tijdens <span class="fill-word">[de vergadering / het evenement]</span> bespreken we <span class="fill-word">[onderwerp]</span>. <span class="fill-word">[Eventuele andere info]</span>.
 
-Ik verzoek u vriendelijk te bevestigen of u aanwezig kunt zijn.
+Wilt u mij vóór <span class="fill-word">[datum]</span> laten weten of u aanwezig bent?
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam + functie]</span></div>
@@ -1052,7 +1094,7 @@ Hierbij nodig ik u uit voor een vergadering over twee onderwerpen. Ten eerste be
 
 De vergadering is op 1 mei 2026 om 19 uur in de lobby van ons appartementencomplex.
 
-Ik hoop dat u erbij kunt zijn. Ik verzoek u vriendelijk te bevestigen of u aanwezig kunt zijn voor 25 april 2026.
+Ik hoop dat u erbij kunt zijn. Wilt u mij vóór 25 april laten weten of u aanwezig bent?
 
 Met vriendelijke groet,</div>
             </div>
@@ -1064,7 +1106,7 @@ Met vriendelijke groet,</div>
             <div>
               <div class="subtype-name">Отклонить приглашение</div>
               <div class="subtype-name-en">een uitnodiging afwijzen</div>
-              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words">40–60 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈40–60 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1080,9 +1122,9 @@ Ik hoop dat het een heel fijn feest wordt. <span class="fill-word">[Gefeliciteer
 Groetjes, <span class="fill-word">[naam]</span></div>
             <div class="example-box">Beste Lars,
 
-Dank je wel voor je uitnodiging voor je verjaardagsfeest! Helaas kan ik niet komen, omdat ik op 17 mei naar Spanje ga. Echter hoop ik dat jij een leuk feest hebt!
+Dank je wel voor je uitnodiging voor je verjaardagsfeest! Helaas kan ik niet komen, omdat ik op 17 mei naar Spanje ga. Ik wens je wel een heel leuk feest!
 
-Als ik terug ben, moeten we koffie drinken!
+Als ik terug ben, gaan we samen koffie drinken!
 
 Groetjes,</div>
             </div>
@@ -1096,7 +1138,7 @@ Groetjes,</div>
     <div id="advies" class="section">
       <div class="section-header">
         <div class="section-title">Дать совет и рекомендации</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 80–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -1105,7 +1147,7 @@ Groetjes,</div>
             <div>
               <div class="subtype-name">Советы коллеге / другу</div>
               <div class="subtype-name-en">tips geven aan collega / vriend</div>
-              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">80–120 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈80–120 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1123,15 +1165,13 @@ Tot slot: <span class="fill-word">[tip 3]</span>.
 Vergeet niet: <span class="fill-word">[aanmoediging]</span>. Je kunt het!
 
 Succes! Groetjes, <span class="fill-word">[naam]</span></div>
-            <div class="example-box">Hoi Polina!
+            <div class="example-box">Hoi Polina,
 
-Wat jammer dat je niet weet wat je nu moet doen!
+Wat spannend dat je gestopt bent met je werk! Ik snap dat je nog niet weet wat je nu wilt doen. Toch denk ik dat het een goede kans is. Je hebt nu tijd om de beste keuze te maken. Bovendien heb je meer tijd voor je kinderen.
 
-Ik denk dat het heel goed is. Je hebt meer tijd om de beste oplossing te vinden. Bovendien heb je meer tijd voor je kinderen.
+Ik geef je graag twee tips. Ten eerste zou ik een korte vakantie nemen, want je hebt hard gewerkt! Daarnaast raad ik je aan om goed na te denken over wat je leuk vindt. Misschien kun je met kinderen werken of honden uitlaten.
 
-Ik geef je graag twee tips. Ten eerste moet je een kleine vakantie nemen — je hebt hard gewerkt! Daarnaast adviseer ik je om goed na te denken over wat je leuk vindt om te doen. Misschien kun je met kinderen werken of honden uitlaten.
-
-Ik weet zeker dat jij de juiste keuze maakt!
+Ik weet zeker dat je de juiste keuze maakt!
 
 Groetjes,</div>
             </div>
@@ -1152,7 +1192,7 @@ Groetjes,</div>
             <div>
               <div class="subtype-name">Формальный совет (сотрудник, студент)</div>
               <div class="subtype-name-en">formeel advies — werknemer, student</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">120–150 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1175,11 +1215,11 @@ Met vriendelijke groet,
 
 Ik schrijf u omdat ik heb gemerkt dat veel klanten na een maand stoppen met sporten.
 
-Ik denk dat dit komt door twee redenen. Ten eerste zijn de openingstijden niet handig voor onze klanten. Ten tweede is de prijs na één maand te hoog.
+Ik denk dat dit twee oorzaken heeft. Ten eerste zijn de openingstijden niet handig voor onze klanten. Ten tweede is de prijs na de eerste maand te hoog.
 
-Ik adviseer de openingstijden te veranderen. De nieuwe openingstijden moeten zijn van 7 uur 's ochtends tot 22 uur 's avonds. Daarnaast kunnen de prijzen ook flexibeler worden voor verschillende groepen mensen.
+Ik adviseer u om de openingstijden te veranderen. De sportschool kan beter open zijn van 7.00 uur 's ochtends tot 22.00 uur 's avonds. Daarnaast raad ik u aan om goedkopere abonnementen aan te bieden, bijvoorbeeld voor studenten en ouderen.
 
-Ik stel voor een vergadering te hebben volgende week donderdag om 11 uur. Kunt u aanwezig zijn?
+Ik stel voor om volgende week donderdag om 11.00 uur te vergaderen. Kunt u dan?
 
 Met vriendelijke groet,</div>
             </div>
@@ -1193,7 +1233,7 @@ Met vriendelijke groet,</div>
     <div id="reactie" class="section">
       <div class="section-header">
         <div class="section-title">Ответить на сообщение</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 60–120 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -1202,7 +1242,7 @@ Met vriendelijke groet,</div>
             <div>
               <div class="subtype-name">Ответ на хорошие новости</div>
               <div class="subtype-name-en">reageren op goed nieuws</div>
-              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–80 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1215,16 +1255,16 @@ Wat <span class="fill-word">[geweldig / fijn / leuk]</span> nieuws! Gefeliciteer
 
 Ik ben zo blij voor je. <span class="fill-word">[Persoonlijke reactie: dit heb je verdiend / wat een mooie stap]</span>.
 
-We moeten dit vieren! Wanneer spreek je af?
+We moeten dit vieren! Wanneer spreken we af?
 
 Groetjes, <span class="fill-word">[naam]</span></div>
             <div class="example-box">Hoi Sofia,
 
-Ik ben heel blij om jouw nieuws te horen! Gefeliciteerd!
+Wat leuk om je nieuws te horen! Gefeliciteerd!
 
-Weet je al wat je verwacht? Is het een meisje of een jongen? Heb je al besloten op de naam?
+Wanneer ben je uitgerekend? Wordt het een jongen of een meisje? En hebben jullie al een naam bedacht?
 
-Als je hulp nodig hebt met schoonmaken of koken, ik ben er voor jou!
+Als je hulp nodig hebt met schoonmaken of koken, dan ben ik er voor je!
 
 Het is zo leuk dat jij een baby krijgt!
 
@@ -1238,7 +1278,7 @@ Groetjes,</div>
             <div>
               <div class="subtype-name">Ответ на плохие новости / болезнь</div>
               <div class="subtype-name-en">reageren op slecht nieuws / ziekte</div>
-              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words">60–80 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–80 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1260,7 +1300,7 @@ Wat vervelend om te horen dat je je baan bent kwijtgeraakt.
 
 Hoe voel jij je? Heb je al plannen?
 
-Als ik iets voor jou kan doen, laat het me dan weten! Ik kan je CV bekijken en daar tips over geven.
+Als ik iets voor jou kan doen, laat het me dan weten! Ik kan je cv bekijken en daar tips over geven.
 
 Ik weet zeker dat jij snel iets nieuws vindt! Sterkte!
 
@@ -1281,7 +1321,7 @@ Groetjes,</div>
             <div>
               <div class="subtype-name">Извинения</div>
               <div class="subtype-name-en">verontschuldigen / excuses maken</div>
-              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words">60–100 w</span></div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–100 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1290,7 +1330,7 @@ Groetjes,</div>
             <div class="template-pair">
             <div class="template-box">Hoi <span class="fill-word">[naam]</span> / Geachte <span class="fill-word">[naam]</span>,
 
-Het spijt me dat <span class="fill-word">[wat er is gebeurd / dat ik te laat was / dat ik de afspraak heb gemist]</span>.
+Het spijt me dat <span class="fill-word">[ik te laat was / ik de afspraak heb gemist / ik het ben vergeten]</span>.
 
 De reden was <span class="fill-word">[ik was ziek / er was een probleem / ik had het vergeten]</span>. Dat had niet mogen gebeuren.
 
@@ -1321,7 +1361,7 @@ Met vriendelijke groet,</div>
     <div id="informatie" class="section">
       <div class="section-header">
         <div class="section-title">Запросить информацию</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 60–100 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -1330,7 +1370,7 @@ Met vriendelijke groet,</div>
             <div>
               <div class="subtype-name">Запрос информации о курсе / товаре / услуге</div>
               <div class="subtype-name-en">informatie vragen over cursus / product / dienst</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">60–100 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–100 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1350,16 +1390,16 @@ Ik zie uw antwoord graag tegemoet.
 
 Met vriendelijke groet,
 <span class="fill-word">[Naam + contactgegevens]</span></div>
-            <div class="example-box">Geachte meneer/mevrouw,
+            <div class="example-box">Geachte heer, mevrouw,
 
-Ik wil een cursus fotografie volgen bij uw fotoschool. Ik wil een fotograaf worden, maar ik heb geen ervaring.
+Ik wil graag een cursus fotografie volgen bij uw fotoschool. Ik wil later fotograaf worden, maar ik heb nog geen ervaring.
 
-Ik heb uw website bekeken maar ik heb nog drie vragen:
-1. Heeft uw cursus praktische taken? Het is heel belangrijk voor mij om praktische taken te doen.
+Ik heb uw website bekeken, maar ik heb nog drie vragen:
+1. Zijn er in de cursus ook praktijkopdrachten? Het is voor mij heel belangrijk om veel te oefenen.
 2. Hoelang duurt de cursus?
-3. Hoeveel mensen zijn er in de groep?
+3. Hoeveel mensen zitten er in een groep?
 
-Als ik mij wil aanmelden, wanneer kan ik dat doen? Hoe kan ik meer informatie krijgen via e-mail?
+Wanneer kan ik mij aanmelden? Kunt u mij ook meer informatie per e-mail sturen?
 
 Met vriendelijke groet,</div>
             </div>
@@ -1371,7 +1411,7 @@ Met vriendelijke groet,</div>
             <div>
               <div class="subtype-name">Записаться / подтвердить / перенести встречу</div>
               <div class="subtype-name-en">afspraak maken / bevestigen / verzetten</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">60–80 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈60–80 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -1406,9 +1446,32 @@ Alvast bedankt,</div>
     <div id="zinstaak" class="section">
       <div class="section-header">
         <div class="section-title">Задание на предложение (1–8)</div>
-        <div class="section-subtitle">Opgave 1–8 · одно предложение, обычно дополняет контекст e-mail</div>
+        <div class="section-subtitle">Opgave 1–8 · een zin of enkele zinnen · 2 балла каждое (16 всего)</div>
       </div>
       <div class="subtypes-grid">
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">4 конструкции, которые проверяют каждый год</div>
+              <div class="subtype-name-en">vaste grammatica in opgave 1–8</div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Смотри на последнее слово перед пропуском</div>
+            <table class="points-table examples">
+              <thead><tr><th>Подсказка перед пропуском</th><th>Что нужно</th><th>Пример</th></tr></thead>
+              <tbody>
+                <tr><td><span class="row-header">…, want</span></td><td>hoofdzin<br><span class="row-sub">обычный порядок</span></td><td>Ik kan dan helaas niet, want ik <strong>moet</strong> naar de tandarts.</td></tr>
+                <tr><td><span class="row-header">…, zodat / omdat / als / dat</span></td><td>bijzin<br><span class="row-sub">глагол в конец</span></td><td>Ik wil graag met je afspreken, zodat je mij meer over de opleiding <strong>kunt vertellen</strong>.</td></tr>
+                <tr><td><span class="row-header">Daarom / Daardoor / Nu</span></td><td>inversie<br><span class="row-sub">глагол сразу после этого слова</span></td><td>Daarom <strong>kunnen</strong> jullie vandaag geen koffie drinken.</td></tr>
+                <tr><td><span class="row-header">zin om / proberen / vergeten</span></td><td>te + infinitief</td><td>Wie heeft er zin om samen <strong>te oefenen</strong>?</td></tr>
+              </tbody>
+            </table>
+            <div class="tip-box"><strong>В 2023, 2024 и 2025</strong> ровно 4 из 8 заданий проверяли эти четыре конструкции. Остальные 4 — свободные: предложение, вопрос, объявление, иногда 2–3 предложения. Подпись не нужна. Если смысл не подходит к ситуации (adequaatheid = 0), грамматику уже не засчитывают — 0 из 2.</div>
+          </div>
+        </div>
 
         <div class="subtype-card">
           <div class="subtype-header" onclick="toggle(this)">
@@ -1420,66 +1483,50 @@ Alvast bedankt,</div>
           </div>
           <div class="subtype-body">
             <div class="phrases-grid">
-              <div class="phrase-item">
-                <div class="phrase-nl">Verontschuldigen</div>
-                <div class="phrase-en">Извинение</div>
-              </div>
-              <div class="phrase-item">
-                <div class="phrase-nl">Afwezig melden</div>
-                <div class="phrase-en">Сообщить об отсутствии</div>
-              </div>
-              <div class="phrase-item">
-                <div class="phrase-nl">Bedanken</div>
-                <div class="phrase-en">Благодарность</div>
-              </div>
-              <div class="phrase-item">
-                <div class="phrase-nl">Informatie geven</div>
-                <div class="phrase-en">Предоставить информацию</div>
-              </div>
-              <div class="phrase-item">
-                <div class="phrase-nl">Reageren op nieuws</div>
-                <div class="phrase-en">Реакция на новости</div>
-              </div>
-              <div class="phrase-item">
-                <div class="phrase-nl">Iets bevestigen</div>
-                <div class="phrase-en">Подтверждение</div>
-              </div>
+              <div class="phrase-item"><div class="phrase-nl">Verontschuldigen</div><div class="phrase-en">Извинение</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Afwezig melden</div><div class="phrase-en">Сообщить об отсутствии</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Bedanken</div><div class="phrase-en">Благодарность</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Informatie geven</div><div class="phrase-en">Предоставить информацию</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Reageren op nieuws</div><div class="phrase-en">Реакция на новости</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Iets bevestigen</div><div class="phrase-en">Подтверждение</div></div>
             </div>
             <div class="body-label">Примеры предложений по ситуациям</div>
             <div class="template-box">VERONTSCHULDIGEN:
-"Het spijt me dat ik <span class="fill-word">[te laat was / de vergadering heb gemist / dit heb vergeten]</span>."
+"Het spijt me dat ik <span class="fill-word">[te laat was / de vergadering heb gemist / dit ben vergeten]</span>."
 "Excuses voor het ongemak."
 
 AFWEZIG MELDEN:
-"Ik kan helaas niet aanwezig zijn bij <span class="fill-word">[wat]</span> omdat <span class="fill-word">[reden]</span>."
+"Ik kan helaas niet aanwezig zijn bij <span class="fill-word">[wat]</span>, omdat <span class="fill-word">[reden]</span>."
 "Ik ben op <span class="fill-word">[datum]</span> ziek en kan daarom niet komen."
 
 BEDANKEN:
 "Hartelijk bedankt voor <span class="fill-word">[uw hulp / de informatie / het gesprek / uw reactie]</span>."
-"Bedankt dat u de tijd heeft genomen om <span class="fill-word">[wat]</span>."
+"Bedankt dat u de tijd heeft genomen om <span class="fill-word">[mij te helpen / dit uit te leggen]</span>."
 
 GOED NIEUWS MELDEN:
 "Ik ben blij u te laten weten dat <span class="fill-word">[wat]</span>."
-"Ik wil u informeren dat <span class="fill-word">[wat]</span>."
+"Ik wil u laten weten dat <span class="fill-word">[wat]</span>."
 
 REAGEREN OP NIEUWS:
 "Gefeliciteerd met <span class="fill-word">[nieuwe baan / diploma / baby]</span>!"
-"Wat vervelend dat <span class="fill-word">[je ziek bent / dat is misgegaan]</span>."
+"Wat vervelend dat <span class="fill-word">[je ziek bent / het is misgegaan]</span>."
 "Beterschap!"
 
 BEVESTIGEN:
-"Ik bevestig dat ik aanwezig zal zijn op <span class="fill-word">[datum]</span>."
+"Ik bevestig dat ik op <span class="fill-word">[datum]</span> aanwezig ben."
 "Hierbij bevestig ik de afspraak van <span class="fill-word">[datum]</span>."
 
-IETS VRAGEN:
+IETS VRAGEN / VOORSTELLEN:
 "Kunt u mij vertellen <span class="fill-word">[wat/wanneer/hoe]</span>?"
 "Zou u mij kunnen helpen met <span class="fill-word">[wat]</span>?"
+"Misschien kunnen we <span class="fill-word">[de grote zaal nemen / om 11.00 uur beginnen]</span>."
 
-GEVOLG/REDEN (let op: dus/want/omdat):
-"Ik was ziek, <span class="fill-word">dus</span> kon ik niet komen."
-"Ik kon niet komen <span class="fill-word">omdat</span> ik ziek was."
-"Ik ben blij <span class="fill-word">want</span> ik heb de baan gekregen."</div>
-            <div class="tip-box"><strong>Обрати внимание на "dus/want/omdat":</strong> если видишь это слово в предложении, ты понимаешь, что нужно дописать. "Dus" = следствие · "Want" = причина (главное предложение) · "Omdat" = причина (придаточное, глагол в конце)</div>
+GEVOLG / REDEN (let op: dus / daarom / want / omdat):
+"Ik was ziek, <span class="fill-word">dus</span> ik kon niet komen." = "Ik was ziek, <span class="fill-word">dus</span> kon ik niet komen."  (beide goed)
+"Ik was ziek. <span class="fill-word">Daarom</span> kon ik niet komen."  (daarom → altijd inversie)
+"Ik kon niet komen, <span class="fill-word">omdat</span> ik ziek was."
+"Ik ben blij, <span class="fill-word">want</span> ik heb de baan gekregen."</div>
+            <div class="tip-box"><strong>Связка = подсказка:</strong> «want» и «dus» — обычный порядок · «daarom» — инверсия · «omdat», «zodat», «als» — глагол в конец.</div>
           </div>
         </div>
 
@@ -1489,34 +1536,222 @@ GEVOLG/REDEN (let op: dus/want/omdat):
     <!-- DEELSCHRIJFTAAK -->
     <div id="deelschrijf" class="section">
       <div class="section-header">
-        <div class="section-title">Дополнить сообщение (задание 9)</div>
-        <div class="section-subtitle">Opgave 9 · дополнить короткое сообщение</div>
+        <div class="section-title">Дописать письмо (задания 9–10)</div>
+        <div class="section-subtitle">Opgave 9–10 · deelschrijftaak · по 8 баллов — столько же, сколько 11–12</div>
       </div>
       <div class="subtypes-grid">
 
         <div class="subtype-card">
           <div class="subtype-header" onclick="toggle(this)">
             <div>
-              <div class="subtype-name">Дополнить короткое сообщение</div>
-              <div class="subtype-name-en">kort bericht aanvullen</div>
+              <div class="subtype-name">Как устроено задание</div>
+              <div class="subtype-name-en">zo ziet opgave 9–10 eruit</div>
             </div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Подход</div>
-            <div class="template-box">1. Lees het hele bericht eerst — wat is de context?
-2. Lees wat je moet aanvullen (er staat [__] of een instructie)
-3. Zorg dat je aanvulling:
-   - Past bij de toon (formeel/informeel)
-   - Past bij de inhoud van de omringende tekst
-   - Grammaticaal correct is
-   - De gevraagde informatie bevat
+            <div class="template-box">Wat krijg je:
+- Een situatie + 3–4 punten die je MOET noemen
+- Het begin van de e-mail: de aanhef, soms de eerste zin, en de afsluiting staan er al
+- Soms plaatjes of een tabel. Die gaan NIET mee met je e-mail
 
-Typische opdrachten:
-- "Schrijf een reactie op dit bericht"
-- "Vul de ontbrekende zin in"
-- "Schrijf de aanhef en afsluiting"
-- "Voeg de reden toe"</div>
+Wat doe je:
+1. Lees de opdracht twee keer en nummer de punten
+2. Schrijf per punt 1–3 zinnen, in dezelfde volgorde
+3. Gebruik je/jij of u, net als in de gegeven aanhef
+4. Schrijf geen zinnen uit de opdracht over (daarvoor krijg je 0 punten)
+5. Controleer aan het einde: staan alle punten erin?
+
+Voorbeelden uit echte examens:
+- 2023: presentatie verzetten — e-mail aan de docent
+- 2024: boeken ruilen — bericht aan buurtbewoners
+- 2024: jaarlijkse sportdag afschaffen — e-mail aan de directie
+- 2025: uitje met collega's — e-mail aan de leidinggevende (plaatjes)
+- 2023 en 2025: een vragenlijst invullen (zie «Анкета»)</div>
+            <div class="tip-box"><strong>Задания 9–10 стоят по 8 баллов — как большое письмо 11–12.</strong> Все шаблоны из раздела «Письма 9–12» подходят и сюда.</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Письмо по картинкам: как всё прошло</div>
+              <div class="subtype-name-en">e-mail bij plaatjes — wat heb je gedaan?</div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈80–120 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Wat heb je gedaan (alle plaatjes)</span><span class="arrow">→</span>
+              <span class="pill">Leukste activiteit + waarom</span><span class="arrow">→</span>
+              <span class="pill">Idee voor volgende keer + waarom</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">[aanhef staat er al]
+
+[de eerste zin staat er vaak al]
+
+Eerst hebben we <span class="fill-word">[plaatje 1: een rondvaart gemaakt]</span>. Daarna zijn we <span class="fill-word">[plaatje 2: naar een museum gegaan]</span>. 's Middags hebben we <span class="fill-word">[plaatje 3]</span>. Tot slot <span class="fill-word">[plaatje 4: hebben we samen gegeten]</span>.
+
+Ik vond <span class="fill-word">[activiteit]</span> het leukst, omdat <span class="fill-word">[reden]</span>.
+
+Volgend jaar wil ik graag naar <span class="fill-word">[stad]</span>, want <span class="fill-word">[reden]</span>. Bovendien <span class="fill-word">[tweede reden]</span>.
+
+[afsluiting staat er al]</div>
+            <div class="example-box">Beste Marco,
+
+Vorige week was het uitje naar Rotterdam met de afdeling.
+
+Eerst hebben we een rondvaart door de haven gemaakt. Daarna hebben we in de Markthal geluncht. 's Middags zijn we naar het Maritiem Museum geweest. Tot slot hebben we samen in een restaurant aan het water gegeten.
+
+Ik vond de rondvaart het leukst, omdat ik Rotterdam nog nooit vanaf het water had gezien.
+
+Volgend jaar wil ik graag naar Maastricht, want dat is een mooie, oude stad. Bovendien kun je daar heerlijk eten.
+
+Vriendelijke groet,</div>
+            </div>
+            <div class="tip-box"><strong>Важно:</strong> каждая картинка = одно предложение. Perfectum: «hebben + gedaan», но «zijn + gegaan / geweest» (движение). Картинки к письму не прикладываются — пиши так, чтобы всё было понятно без них.</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Объявление для соседей / членов клуба</div>
+              <div class="subtype-name-en">bericht aan buren / leden — informeren</div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈80–120 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Waarom schrijf je</span><span class="arrow">→</span>
+              <span class="pill">Wat is het</span><span class="arrow">→</span>
+              <span class="pill">Min. 2 voordelen</span><span class="arrow">→</span>
+              <span class="pill">Wat, wanneer, waar</span><span class="arrow">→</span>
+              <span class="pill">Wat moeten ze doen</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Beste <span class="fill-word">[buren / leden]</span>,
+
+Ik schrijf dit bericht omdat <span class="fill-word">[ik ... wil organiseren / we iets nieuws beginnen]</span>.
+
+<span class="fill-word">[Wat is het precies]</span>. Dit heeft twee voordelen. Ten eerste <span class="fill-word">[voordeel 1]</span>. Ten tweede <span class="fill-word">[voordeel 2]</span>.
+
+<span class="fill-word">[Wat: welke spullen / activiteiten]</span>. <span class="fill-word">[Wanneer en waar]</span>.
+
+Wilt u meedoen? Dan <span class="fill-word">[wat moeten ze doen: stuur mij een bericht / kom langs]</span>.
+
+Groeten,
+<span class="fill-word">[Naam]</span></div>
+            <div class="example-box">Beste buren,
+
+Ik schrijf dit bericht omdat ik een plantenruil wil organiseren in onze straat.
+
+Bij een plantenruil neemt u een plant mee en krijgt u een andere plant terug. Dit heeft twee voordelen. Ten eerste is het gratis. Ten tweede leren we elkaar beter kennen.
+
+Ik wil vooral kamerplanten en kruiden ruilen, zoals basilicum en munt. De plantenruil is op zaterdag 16 mei van 10.00 tot 12.00 uur op het pleintje bij nummer 20.
+
+Wilt u meedoen? Stuur mij dan vóór 10 mei een berichtje via de buurtapp.
+
+Groeten,</div>
+            </div>
+            <div class="tip-box"><strong>Как в экзамене 2024 («Boeken ruilen»):</strong> зачем пишешь · минимум 2 преимущества · что именно · что нужно сделать соседям. После «Ten eerste / Ten tweede» — инверсия: «Ten eerste <u>is</u> het gratis».</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Несогласие с решением</div>
+              <div class="subtype-name-en">het niet eens zijn met een plan</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈100–130 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Waar ben je het niet mee eens</span><span class="arrow">→</span>
+              <span class="pill">Waarom (min. 2 redenen)</span><span class="arrow">→</span>
+              <span class="pill">Oplossing</span><span class="arrow">→</span>
+              <span class="pill">Voorstel voor een gesprek</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Geachte <span class="fill-word">[directie / heer, mevrouw]</span>,
+
+Namens <span class="fill-word">[de studentenraad / de bewoners]</span> schrijf ik u over het plan om <span class="fill-word">[wat]</span>. Wij zijn het niet eens met dit plan.
+
+Ten eerste <span class="fill-word">[reden 1]</span>. Ten tweede <span class="fill-word">[reden 2]</span>.
+
+Wij hebben een oplossing. <span class="fill-word">[Oplossing]</span>. Zo <span class="fill-word">[wat blijft er goed / wat kost het niet]</span>.
+
+Ik stel voor om hierover te praten. Heeft u op <span class="fill-word">[dag datum]</span> om <span class="fill-word">[tijd]</span> tijd voor een gesprek?
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+            <div class="example-box">Geachte directie,
+
+Namens de studentenraad schrijf ik u over het plan om de studieruimte 's avonds te sluiten. Wij zijn het niet eens met dit plan.
+
+Ten eerste hebben veel studenten thuis geen rustige plek om te leren. Ten tweede werken veel studenten overdag, dus kunnen ze alleen 's avonds studeren.
+
+Wij hebben een oplossing. De studieruimte kan 's avonds open blijven als studenten om de beurt toezicht houden. Zo kost het de school geen extra geld.
+
+Ik stel voor om hierover te praten. Heeft u op dinsdag 12 mei om 15.00 uur tijd voor een gesprek?
+
+Met vriendelijke groet,</div>
+            </div>
+            <div class="tip-box"><strong>Как в экзамене 2024 («Afschaffen jaarlijkse sportdag»):</strong> с чем не согласен · почему · минимум одно решение · предложение встретиться. «Ik stel <u>een gesprek voor</u>» или «Ik stel voor <u>om</u> … te …».</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Попросить перенести / разрешение</div>
+              <div class="subtype-name-en">toestemming vragen / iets verzetten</div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈80–110 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Wanneer is het nu</span><span class="arrow">→</span>
+              <span class="pill">Wanneer liever</span><span class="arrow">→</span>
+              <span class="pill">Waarom belangrijk</span><span class="arrow">→</span>
+              <span class="pill">Wat verwacht je</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Beste <span class="fill-word">[mevrouw/meneer + achternaam]</span>,
+
+Volgens <span class="fill-word">[het rooster / de planning]</span> moet ik <span class="fill-word">[wat]</span> op <span class="fill-word">[dag datum]</span> <span class="fill-word">[doen]</span>. Ik wil dit liever op <span class="fill-word">[nieuwe dag datum]</span> doen.
+
+Op <span class="fill-word">[datum]</span> kan ik namelijk niet, omdat <span class="fill-word">[reden]</span>. Het is belangrijk voor mij om de datum te verzetten, want <span class="fill-word">[reden]</span>.
+
+Ik hoop dat u mij toestemming geeft. Kunt u mij vóór <span class="fill-word">[datum]</span> laten weten of het mogelijk is?
+
+Met vriendelijke groet,
+<span class="fill-word">[Naam]</span></div>
+            <div class="example-box">Beste mevrouw Janssen,
+
+Volgens het rooster moet ik mijn presentatie Nederlands op dinsdag 12 mei geven. Ik wil de presentatie liever op donderdag 21 mei geven.
+
+Op 12 mei kan ik namelijk niet, omdat ik dan naar het ziekenhuis moet voor een onderzoek. Het is belangrijk voor mij om de datum te verzetten, want ik wil een goed cijfer halen. Op 21 mei heb ik meer tijd om me goed voor te bereiden.
+
+Ik hoop dat u mij toestemming geeft. Kunt u mij vóór vrijdag laten weten of het mogelijk is?
+
+Met vriendelijke groet,</div>
+            </div>
+            <div class="tip-box"><strong>Как в экзамене 2023 («Presentatie Nederlands»):</strong> когда сейчас · когда лучше · почему это важно · чего ты ждёшь от преподавателя.</div>
           </div>
         </div>
 
@@ -1526,34 +1761,85 @@ Typische opdrachten:
     <!-- FORMULIER -->
     <div id="formulier" class="section">
       <div class="section-header">
-        <div class="section-title">Заполнить анкету (задание 10)</div>
-        <div class="section-subtitle">Opgave 10 · заполнить форму / анкету</div>
+        <div class="section-title">Заполнить анкету (задание 9 или 10)</div>
+        <div class="section-subtitle">deelschrijftaak · 7 баллов · бывает не каждый год</div>
       </div>
       <div class="subtypes-grid">
 
         <div class="subtype-card">
           <div class="subtype-header" onclick="toggle(this)">
             <div>
-              <div class="subtype-name">Заявление / регистрационная форма</div>
-              <div class="subtype-name-en">aanvraag- / registratieformulier</div>
+              <div class="subtype-name">Анкета с открытыми вопросами</div>
+              <div class="subtype-name-en">vragenlijst invullen — zoals in het examen</div>
             </div>
             <div class="chevron">▼</div>
           </div>
           <div class="subtype-body">
-            <div class="body-label">Частые поля в анкете</div>
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Elke vraag beantwoorden</span><span class="arrow">→</span>
+              <span class="pill">Hele zinnen</span><span class="arrow">→</span>
+              <span class="pill">Reden(en) als erom gevraagd wordt</span><span class="arrow">→</span>
+              <span class="pill">Niets overschrijven</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Как отвечать</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Welke ... wilt u ...? Waarom?
+→ Ik wil graag <span class="fill-word">[keuze]</span>, omdat <span class="fill-word">[reden]</span>.
+
+Hoeveel / Hoe vaak ...?
+→ Ik wil <span class="fill-word">[aantal]</span> keer per week <span class="fill-word">[wat]</span>, want <span class="fill-word">[reden]</span>.
+
+Wat hoopt u te leren / bereiken?
+→ Ik hoop dat ik <span class="fill-word">[wat]</span> leer. Ook wil ik graag <span class="fill-word">[wat]</span>.
+
+Liever A of B? Geef minimaal twee redenen.
+→ Ik kies liever voor <span class="fill-word">[A]</span>. Ten eerste <span class="fill-word">[reden 1]</span>. Ten tweede <span class="fill-word">[reden 2]</span>.
+
+Hebt u eerder ...? Zo ja, ...? Zo nee, waarom niet?
+→ Ja, ik heb <span class="fill-word">[wanneer]</span> <span class="fill-word">[wat]</span>. Dat vond ik <span class="fill-word">[mening]</span>, omdat <span class="fill-word">[reden]</span>.
+→ Nee, ik heb nog nooit <span class="fill-word">[wat]</span>, omdat <span class="fill-word">[reden]</span>.</div>
+            <div class="example-box">Vragenlijst sporten op het werk
+
+1. Welke sport wilt u graag doen? Waarom?
+Ik wil graag yoga doen, omdat ik daar rustig van word.
+
+2. Hoe vaak wilt u sporten?
+Ik wil twee keer per week sporten, want dan blijf ik fit.
+
+3. Wat hoopt u te bereiken?
+Ik hoop dat ik minder last van mijn rug heb. Ook wil ik graag sterker worden.
+
+4. Sport u liever 's ochtends of 's avonds? Geef minimaal twee redenen.
+Ik sport liever 's avonds. Ten eerste ben ik 's ochtends vaak moe. Ten tweede kan ik dan na het werk samen met collega's gaan.
+
+5. Bent u eerder lid geweest van een sportclub? Zo ja, wat vond u ervan? Zo nee, waarom niet?
+Nee, ik ben nog nooit lid geweest van een sportclub, omdat ik vroeger weinig tijd had.</div>
+            </div>
+            <div class="tip-box"><strong>Как в экзаменах 2023 и 2025:</strong> 5–6 открытых вопросов. Ответ одним словом («Yoga.») = мало баллов за adequaatheid. Отвечай на ВСЕ вопросы, где просят «minimaal twee redenen» — дай две. Оценивают adequaatheid 0–3, grammatica 0–2, spelling 0–1, woordgebruik 0–1 (samenhang — нет).</div>
+          </div>
+        </div>
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Если в анкете есть личные данные</div>
+              <div class="subtype-name-en">persoonsgegevens invullen</div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Частые поля</div>
             <div class="template-box">Voornaam:          <span class="fill-word">[jouw voornaam]</span>
 Achternaam:        <span class="fill-word">[jouw achternaam]</span>
 Geboortedatum:     <span class="fill-word">[dag-maand-jaar, bijv. 15-03-1985]</span>
 Adres:             <span class="fill-word">[straatnaam + huisnummer]</span>
-Postcode + stad:   <span class="fill-word">[1234 AB Amsterdam]</span>
+Postcode + plaats: <span class="fill-word">[1234 AB Amsterdam]</span>
 Telefoonnummer:    <span class="fill-word">[06-12345678]</span>
 E-mailadres:       <span class="fill-word">[naam@email.nl]</span>
-Nationaliteit:     <span class="fill-word">[Russisch / Nederlands / ...]</span>
 Beroep:            <span class="fill-word">[wat je doet]</span>
-Reden van aanvraag: <span class="fill-word">[2–3 volledige zinnen]</span>
-Datum:             <span class="fill-word">[vandaag, bijv. 10 maart 2026]</span>
-Handtekening/Naam: <span class="fill-word">[volledige naam]</span></div>
-            <div class="tip-box"><strong>Правило:</strong> Заполни ВСЁ · Пиши полные предложения, где это требуется · Используй информацию из задания · Не выдумывай лишнего · Мотивация/причина: 2–3 конкретных предложения</div>
+Reden:             <span class="fill-word">[2–3 volledige zinnen met omdat / want]</span></div>
+            <div class="tip-box"><strong>Данные можно выдумать.</strong> Главные баллы — за открытые вопросы: полные предложения и причины.</div>
           </div>
         </div>
 
@@ -1567,6 +1853,26 @@ Handtekening/Naam: <span class="fill-word">[volledige naam]</span></div>
         <div class="section-subtitle">Формальное vs. неформальное обращение</div>
       </div>
 
+      <div class="subtype-card" style="margin-bottom: 1rem;">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">В экзамене обращение и подпись уже даны</div><div class="subtype-name-en">aanhef en afsluiting staan er al</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">In het examen staan de aanhef en de afsluiting er bijna altijd al:
+"Geachte heer, mevrouw,"   …   "Met vriendelijke groet,"
+"Beste meneer Albahir,"    …   "Met vriendelijke groet,"
+"Hoi Janneke,"             …   "Groetjes,"
+
+Kijk naar de aanhef en kies:
+Geachte … / Beste meneer/mevrouw + achternaam  →  u, uw
+Hoi / Hallo + voornaam                         →  je, jij, jouw
+Beste + voornaam  →  по ситуации: друг/коллега — je; официальное письмо от работы — u
+Hallo allemaal / Hoi Paul, Abdul en Meryem     →  jullie</div>
+          <div class="tip-box"><strong>Писать обращение и подпись заново не нужно.</strong> Главное — выбрать u или je по данному обращению и не смешивать их в одном письме.</div>
+        </div>
+      </div>
+
       <div class="two-col">
         <div class="subtype-card">
           <div class="subtype-header" onclick="toggle(this)">
@@ -1577,8 +1883,8 @@ Handtekening/Naam: <span class="fill-word">[volledige naam]</span></div>
             <div class="body-label">Обращение</div>
             <div class="template-box">Geachte heer <span class="fill-word">[achternaam]</span>,
 Geachte mevrouw <span class="fill-word">[achternaam]</span>,
-Geachte heer/mevrouw,  <span class="fill-word">(naam onbekend)</span>
-Geachte <span class="fill-word">[naam]</span>,</div>
+Geachte heer, mevrouw,  <span class="fill-word">(naam onbekend)</span>
+Beste meneer/mevrouw <span class="fill-word">[achternaam]</span>,  <span class="fill-word">(vriendelijk-formeel, met u)</span></div>
             <div class="body-label">Подпись / Завершение</div>
             <div class="template-box">Met vriendelijke groet,
 Hoogachtend,  <span class="fill-word">(zeer formeel)</span>
@@ -1638,36 +1944,64 @@ TWIJFEL? → Kies formeel, dat is altijd veiliger</div>
         <div class="section-subtitle">Слова-связки для логичного текста</div>
       </div>
       <div class="phrases-grid" style="margin-bottom: 1rem;">
-        <div class="phrase-item"><div class="phrase-nl">Ten eerste... / Allereerst...</div><div class="phrase-en">Во-первых... / Прежде всего...</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Daarnaast... / Bovendien...</div><div class="phrase-en">Кроме того / К тому же</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Ook... / Tevens...</div><div class="phrase-en">Также / Тоже</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Tot slot... / Ten slotte...</div><div class="phrase-en">И наконец... / В заключение...</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Omdat... (bijzin)</div><div class="phrase-en">Потому что (придаточное)</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Want... (hoofdzin)</div><div class="phrase-en">Потому что (главное предл.)</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Dus... / Daarom...</div><div class="phrase-en">Поэтому / Следовательно</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Maar... / Echter...</div><div class="phrase-en">Но / Однако</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Helaas...</div><div class="phrase-en">К сожалению...</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Gelukkig...</div><div class="phrase-en">К счастью...</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Naar aanleiding van...</div><div class="phrase-en">В связи с... / По поводу...</div></div>
-        <div class="phrase-item"><div class="phrase-nl">Met betrekking tot...</div><div class="phrase-en">Относительно / Касательно</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Ten eerste… / Allereerst…</div><div class="phrase-en">Во-первых · ⇄ инверсия</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Daarnaast… / Bovendien…</div><div class="phrase-en">Кроме того · ⇄ инверсия</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Ook… / Tevens…</div><div class="phrase-en">Также · ⇄ инверсия в начале</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Tot slot… / Ten slotte…</div><div class="phrase-en">Наконец · ⇄ инверсия</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Daarom… / Daardoor…</div><div class="phrase-en">Поэтому / Из-за этого · ⇄ инверсия</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Toch…</div><div class="phrase-en">Всё же · ⇄ инверсия</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Helaas… / Gelukkig…</div><div class="phrase-en">К сожалению / К счастью · ⇄ инверсия</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Dus…</div><div class="phrase-en">Значит · оба порядка верны</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Want… / Maar… / En…</div><div class="phrase-en">Потому что / Но / И · обычный порядок</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Omdat… / Doordat…</div><div class="phrase-en">Потому что / Из-за того что · глагол в конец</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Zodat…</div><div class="phrase-en">Так что, чтобы · глагол в конец</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Als… / Wanneer…</div><div class="phrase-en">Если / Когда · глагол в конец</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Hoewel…</div><div class="phrase-en">Хотя · глагол в конец</div></div>
+        <div class="phrase-item"><div class="phrase-nl">…, echter, …</div><div class="phrase-en">Однако · только в середине: «Ik heb echter geen tijd.»</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Naar aanleiding van…</div><div class="phrase-en">В связи с… / По поводу…</div></div>
+        <div class="phrase-item"><div class="phrase-nl">Met betrekking tot…</div><div class="phrase-en">Относительно / Касательно</div></div>
       </div>
 
       <div class="subtype-card">
         <div class="subtype-header" onclick="toggle(this)">
-          <div><div class="subtype-name">Omdat vs. want — разница</div><div class="subtype-name-en">omdat vs. want — het verschil</div></div>
+          <div><div class="subtype-name">Порядок слов после связок: 3 группы</div><div class="subtype-name-en">woordvolgorde na verbindingswoorden</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">1. ОБЫЧНЫЙ ПОРЯДОК — want, maar, en, of, dus:
+"Ik kan niet komen, <span class="fill-word">want</span> ik <span class="fill-word">ben</span> ziek."
+
+2. ИНВЕРСИЯ (глагол сразу после первой части) — daarom, daarna, daardoor, bovendien, daarnaast, ten eerste, helaas, toch, dan, nu:
+"<span class="fill-word">Daarom</span> <span class="fill-word">kan</span> ik niet komen."
+"<span class="fill-word">Helaas</span> <span class="fill-word">heb</span> ik geen tijd."
+
+3. ПРИДАТОЧНОЕ (глагол в конец) — omdat, zodat, doordat, als, wanneer, hoewel, dat, of (= «ли»):
+"Ik kan niet komen, <span class="fill-word">omdat</span> ik ziek <span class="fill-word">ben</span>."
+"<span class="fill-word">Als</span> je hulp nodig hebt, <span class="fill-word">ben</span> ik er voor je."   ← придаточное в начале → потом инверсия!</div>
+          <div class="tip-box"><strong>Это и есть грамматика заданий 1–8:</strong> want → hoofdzin · omdat/zodat → bijzin · daarom → inversie.</div>
+        </div>
+      </div>
+
+      <div class="subtype-card">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">Omdat vs. want vs. daarom</div><div class="subtype-name-en">omdat, want en daarom — het verschil</div></div>
           <div class="chevron">▼</div>
         </div>
         <div class="subtype-body">
           <div class="template-box">OMDAT → bijzin → werkwoord achteraan:
-"Ik kan niet komen <span class="fill-word">omdat</span> ik ziek <span class="fill-word">ben</span>."
-"Ik schrijf u <span class="fill-word">omdat</span> ik een probleem <span class="fill-word">heb</span>."
+"Ik kan niet komen, <span class="fill-word">omdat</span> ik ziek <span class="fill-word">ben</span>."
+"Ik schrijf u, <span class="fill-word">omdat</span> ik een probleem <span class="fill-word">heb</span>."
 
 WANT → hoofdzin → werkwoord op normale plek:
 "Ik kan niet komen, <span class="fill-word">want</span> ik <span class="fill-word">ben</span> ziek."
 "Dit is vervelend, <span class="fill-word">want</span> ik moet morgen werken."
 
-DUS → gevolg → gewone volgorde:
-"Ik was ziek, <span class="fill-word">dus</span> ik <span class="fill-word">kon</span> niet komen."</div>
+DAAROM → inversie:
+"Ik was ziek. <span class="fill-word">Daarom</span> <span class="fill-word">kon</span> ik niet komen."
+
+DUS → allebei goed:
+"Ik was ziek, <span class="fill-word">dus</span> ik kon niet komen."
+"Ik was ziek, <span class="fill-word">dus</span> kon ik niet komen."</div>
         </div>
       </div>
     </div>
@@ -1676,41 +2010,36 @@ DUS → gevolg → gewone volgorde:
     <div id="beoordeling" class="section">
       <div class="section-header">
         <div class="section-title">Критерии оценки</div>
-        <div class="section-subtitle">Как оценивают письменную работу</div>
+        <div class="section-subtitle">Как оценивают письменную работу (по моделям оценки CvTE 2023–2025)</div>
       </div>
 
       <div class="score-box">
-        <div class="body-label">Критерии по разделам</div>
+        <div class="body-label">Критерии</div>
         <div class="score-grid">
           <div class="score-item">
-            <div class="score-name">Adequaatheid</div>
-            <div class="score-en">Всё ли из задания выполнено?</div>
-            <div class="score-bar"><div class="score-fill" style="width: 100%"></div></div>
-          </div>
-          <div class="score-item">
-            <div class="score-name">Begrijpelijkheid</div>
-            <div class="score-en">Понятен ли текст читателю?</div>
+            <div class="score-name">Adequaatheid/<wbr>begrijpelijkheid</div>
+            <div class="score-en">Все пункты раскрыты и текст понятен? (один критерий)</div>
             <div class="score-bar"><div class="score-fill" style="width: 100%"></div></div>
           </div>
           <div class="score-item">
             <div class="score-name">Grammatica</div>
-            <div class="score-en">Грамматически верные предложения?</div>
+            <div class="score-en">Порядок слов, формы глаголов, артикли</div>
             <div class="score-bar"><div class="score-fill" style="width: 80%"></div></div>
           </div>
           <div class="score-item">
             <div class="score-name">Spelling</div>
-            <div class="score-en">Правильная орфография (вкл. dt-regel)</div>
-            <div class="score-bar"><div class="score-fill" style="width: 70%"></div></div>
+            <div class="score-en">Орфография, вкл. dt-regel</div>
+            <div class="score-bar"><div class="score-fill" style="width: 60%"></div></div>
           </div>
           <div class="score-item">
             <div class="score-name">Samenhang</div>
-            <div class="score-en">Логичная связность текста?</div>
-            <div class="score-bar"><div class="score-fill" style="width: 75%"></div></div>
+            <div class="score-en">Связность, связующие слова</div>
+            <div class="score-bar"><div class="score-fill" style="width: 60%"></div></div>
           </div>
           <div class="score-item">
             <div class="score-name">Woordgebruik</div>
-            <div class="score-en">Подходящие слова для ситуации?</div>
-            <div class="score-bar"><div class="score-fill" style="width: 70%"></div></div>
+            <div class="score-en">Подходящие слова для темы</div>
+            <div class="score-bar"><div class="score-fill" style="width: 60%"></div></div>
           </div>
         </div>
       </div>
@@ -1726,71 +2055,79 @@ DUS → gevolg → gewone volgorde:
               <tr>
                 <th>Критерий</th>
                 <th>Zinstaak (1–8)</th>
-                <th>Deelschrijf (9)</th>
-                <th>Formulier (10)</th>
+                <th>Deelschrijftaak (9–10)</th>
                 <th>Kort (11–12)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><span class="row-header">Adequaatheid</span><br><span class="row-sub">Все пункты раскрыты?</span></td>
-                <td>—</td>
-                <td>0–3</td>
-                <td>0–3</td>
-                <td>0–3</td>
-              </tr>
-              <tr>
-                <td><span class="row-header">Begrijpelijkheid</span><br><span class="row-sub">Понятно ли читателю?</span></td>
-                <td>—</td>
+                <td><span class="row-header">Adequaatheid/<wbr>begrijpelijkheid</span><br><span class="row-sub">Все пункты? Понятно?</span></td>
                 <td>0–1</td>
-                <td>0–1</td>
-                <td>—</td>
+                <td>0–3</td>
+                <td>0–3</td>
               </tr>
               <tr>
                 <td><span class="row-header">Grammatica</span><br><span class="row-sub">Правильные предложения?</span></td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
+                <td>0–1</td>
+                <td>0–2</td>
                 <td>0–2</td>
               </tr>
               <tr>
                 <td><span class="row-header">Spelling</span><br><span class="row-sub">Вкл. dt-regel</span></td>
                 <td>—</td>
-                <td>—</td>
-                <td>—</td>
+                <td>0–1</td>
                 <td>0–1</td>
               </tr>
               <tr>
-                <td><span class="row-header">Samenhang</span><br><span class="row-sub">Логичная структура?</span></td>
+                <td><span class="row-header">Samenhang</span><br><span class="row-sub">Логичная связь?</span></td>
                 <td>—</td>
-                <td>—</td>
-                <td>—</td>
+                <td>0–1 (в анкете нет)</td>
                 <td>0–1</td>
               </tr>
               <tr>
-                <td><span class="row-header">Woordgebruik</span><br><span class="row-sub">Подходящий стиль?</span></td>
+                <td><span class="row-header">Woordgebruik</span><br><span class="row-sub">Подходящие слова?</span></td>
                 <td>—</td>
-                <td>—</td>
-                <td>—</td>
+                <td>0–1</td>
                 <td>0–1</td>
               </tr>
               <tr style="background: var(--bg); font-weight: 500;">
                 <td><span class="row-header">За задание</span></td>
-                <td>2 pt</td>
-                <td>0–4</td>
-                <td>0–4</td>
-                <td>0–8</td>
+                <td>2</td>
+                <td>7–8</td>
+                <td>8</td>
               </tr>
               <tr style="background: var(--accent-light);">
                 <td><span class="row-header">Итого за раздел</span></td>
                 <td>8 × 2 = 16</td>
-                <td>max 4</td>
-                <td>max 4</td>
+                <td>15–16</td>
                 <td>2 × 8 = 16</td>
               </tr>
             </tbody>
           </table>
-          <div class="tip-box" style="margin-top: 0.75rem;"><strong>Korte schrijftaak (11–12):</strong> adequaatheid весит больше всего (0–3). Даже с идеальным нидерландским получишь мало баллов, если не раскроешь все пункты задания.</div>
+          <div class="tip-box" style="margin-top: 0.75rem;"><strong>Всего 47–48 баллов, проходной — 25–26 (около 53%).</strong> Баллы переводятся в score: 500 и выше — сдал(а). Задания 9–10 стоят столько же, сколько 11–12!</div>
+        </div>
+      </div>
+
+      <div class="subtype-card">
+        <div class="subtype-header" onclick="toggle(this)">
+          <div><div class="subtype-name">Правила оценки, которые важно знать</div><div class="subtype-name-en">aanwijzingen voor de beoordeling</div></div>
+          <div class="chevron">▼</div>
+        </div>
+        <div class="subtype-body">
+          <div class="template-box">ADEQUAATHEID (0–3) в заданиях 9–12:
+→ Все пункты задания раскрыты = старт с 2 баллов
+→ 3 балла — если текст ещё и хорошо написан
+→ Пропущен хотя бы один пункт = максимум 2
+→ Неправильно понял(а) ситуацию = максимум 2
+→ 0 баллов = всё задание 0 (остальное не проверяют)
+
+ЧТО ЕЩЁ ВАЖНО:
+→ Переписанные из задания предложения = 0 баллов за них
+→ Лишний текст с ошибками снижает оценку
+→ Картинки и таблица НЕ идут с письмом — называй цифры, дни, названия
+→ Ошибки de/het прощаются, пропущенный артикль — нет
+→ Информация не обязана быть правдой — можно выдумывать
+→ Количество слов не считают — считают пункты</div>
         </div>
       </div>
 
@@ -1800,16 +2137,16 @@ DUS → gevolg → gewone volgorde:
           <div class="chevron">▼</div>
         </div>
         <div class="subtype-body">
-          <div class="template-box">□ Я прочитал(а) задание 2 раза?
-□ Я раскрыл(а) ВСЕ пункты задания?
-□ Тон правильный? (formeel/informeel)
-□ Правильное обращение и подпись?
-□ Мои предложения понятны?
-□ Я использовал(а) связующие слова?
-□ Я правильно применил(а) dt-regel?
-□ Я написал(а) нужное количество слов?
-□ Я подписал(а) письмо своим именем?</div>
-          <div class="tip-box"><strong>Правило №1 — adequaatheid:</strong> Если ты не выполнишь всё, что просит задание, высокий балл невозможен, даже если нидерландский идеален. Читай задание минимум 2 раза и отмечай каждый пункт.</div>
+          <div class="template-box">□ Я прочитал(а) задание 2 раза и пронумеровал(а) пункты?
+□ Каждый пункт есть в тексте (+ причина, где просят «waarom»)?
+□ Где просят «minimaal twee», я дал(а) два?
+□ u или je — как в обращении, которое уже дано?
+□ Письмо понятно без картинки или таблицы?
+□ Я не переписал(а) предложения из задания?
+□ Я использовал(а) связующие слова (ten eerste, daarnaast, daarom…)?
+□ Порядок слов после omdat / daarom / als правильный?
+□ Я проверил(а) dt-regel?</div>
+          <div class="tip-box"><strong>Правило №1 — adequaatheid:</strong> если не выполнить всё, что просит задание, больше 2 из 3 не получить, даже с идеальным нидерландским. Читай задание минимум 2 раза и отмечай каждый пункт.</div>
         </div>
       </div>
 
@@ -1819,24 +2156,26 @@ DUS → gevolg → gewone volgorde:
           <div class="chevron">▼</div>
         </div>
         <div class="subtype-body">
-          <div class="template-box">Stam van het werkwoord = de hij-vorm minus -t:
-"hij werkt" → stam = "werk"
+          <div class="template-box">1. IK-VORM = STAM (zonder -t):
+   ik werk · ik word · ik vind
 
-Tegenwoordige tijd:
-ik werk       (geen t)
-jij werkt     (met t, tenzij inversie: "werk jij")
-hij/zij werkt (met t)
+2. JIJ / U / HIJ / ZIJ / HET = stam + t:
+   jij werkt · hij wordt · u vindt
+   Maar: jij ná het werkwoord → géén t:  werk jij? · word jij? · vind jij?
+   (u en hij houden de t: wordt u? · vindt hij?)
 
-Verleden tijd:
-Zacht klinker aan einde stam (t, k, f, s, ch, p = 't kofschip):
-→ -te / -ten:  "ik werkte, wij werkten"
-Anders:
-→ -de / -den:  "ik leefde" — wacht, 'f' is in 't kofschip → "ik leefde"? 
-Nee: stam van leven = "leef" → 'f' in kofschip → "leefde" ✓
+3. TWIJFEL? Vervang door "lopen":
+   hij word_ … → hij loopt → t → <span class="fill-word">hij wordt</span>
+   word_ jij …? → loop jij? → geen t → <span class="fill-word">word jij</span>
 
-Makkelijkste test: vervang het werkwoord door "werken":
-"hij werkt" → "hij word-t" → "hij wordt" ✓
-"gewerkt / geword-t" → gebruik de t-versie als stam eindigt op t</div>
+4. VERLEDEN TIJD: kijk naar de letter vóór -en in het infinitief
+   In 't kofschip (t, k, f, s, ch, p) → -te / -ten:
+     werken → werkte · fietsen → fietste · stoppen → stopte
+   Anders → -de / -den:
+     wonen → woonde · leven → <span class="fill-word">leefde</span> (v!) · verhuizen → <span class="fill-word">verhuisde</span> (z!)
+
+5. VOLTOOID DEELWOORD: zelfde regel → ge- + stam + t / d
+   gewerkt · gefietst · gewoond · geleefd · verhuisd</div>
         </div>
       </div>
 
@@ -1846,7 +2185,7 @@ Makkelijkste test: vervang het werkwoord door "werken":
     <div id="tevredenheid" class="section">
       <div class="section-header">
         <div class="section-title">Опрос удовлетворённости</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -1857,7 +2196,7 @@ Makkelijkste test: vervang het werkwoord door "werken":
               <div class="subtype-name-en">отчёт по таблице с % tevreden / niet tevreden</div>
               <div class="subtype-meta">
                 <span class="tag formal">formeel</span>
-                <span class="tag words">120–150 w</span>
+                <span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span>
               </div>
             </div>
             <div class="chevron">▼</div>
@@ -1878,11 +2217,11 @@ Makkelijkste test: vervang het werkwoord door "werken":
 
 Ik heb een onderzoek gedaan naar <span class="fill-word">[onderwerp]</span>. Daarvoor heb ik <span class="fill-word">[aantal]</span> <span class="fill-word">[mensen/klanten/medewerkers]</span> gevraagd naar hun mening.
 
-Uit het onderzoek blijkt dat de meeste <span class="fill-word">[mensen]</span> tevreden zijn over <span class="fill-word">[aspect 1]</span>. Dit komt waarschijnlijk omdat <span class="fill-word">[reden]</span>. Ook is <span class="fill-word">[percentage]</span>% tevreden over <span class="fill-word">[aspect 2]</span> omdat <span class="fill-word">[reden]</span>.
+Uit het onderzoek blijkt dat de meeste <span class="fill-word">[mensen]</span> tevreden zijn over <span class="fill-word">[aspect 1]</span>. Dit komt waarschijnlijk doordat <span class="fill-word">[reden]</span>. Ook is <span class="fill-word">[percentage]</span>% tevreden over <span class="fill-word">[aspect 2]</span> omdat <span class="fill-word">[reden]</span>.
 
 Helaas is meer dan de helft niet tevreden over <span class="fill-word">[aspect 3]</span> omdat <span class="fill-word">[reden]</span>. Daarnaast zijn veel <span class="fill-word">[mensen]</span> ontevreden over <span class="fill-word">[aspect 4]</span>.
 
-Ik adviseer u om <span class="fill-word">[maatregel 1]</span> te verbeteren. Ook raad ik u aan om <span class="fill-word">[maatregel 2]</span>. Op deze manier kunt u de tevredenheid verhogen.
+Ik adviseer u om <span class="fill-word">[maatregel 1]</span> te verbeteren. Ook raad ik u aan om <span class="fill-word">[maatregel 2]</span> te <span class="fill-word">[veranderen / verlagen]</span>. Op deze manier kunt u de tevredenheid verhogen.
 
 Als u vragen heeft, kunt u altijd contact met mij opnemen.
 
@@ -1890,17 +2229,13 @@ Met vriendelijke groet,
 <span class="fill-word">[Naam]</span></div>
             <div class="example-box">Geachte meneer Moot,
 
-Ik heb een onderzoek gedaan naar de tevredenheid van mensen die het concert hebben bezocht. Daarvoor heb ik 100 mensen gevraagd naar hun mening over het concert.
+Ik heb een onderzoek gedaan naar de tevredenheid van de bezoekers van het concert. Daarvoor heb ik 100 bezoekers gevraagd naar hun mening.
 
-De meeste mensen zijn tevreden over het personeel, omdat het personeel vriendelijk was. Veel mensen zijn ook tevreden over de muziek, omdat het leuk was.
+Uit het onderzoek blijkt dat 85% van de bezoekers tevreden is over het personeel, omdat het personeel erg vriendelijk was. Ook is 70% tevreden over de muziek, omdat de band goed speelde.
 
-Helaas is meer dan 60% van de mensen niet blij met de prijzen van de kaarten. Mensen vonden de prijzen te hoog.
+Helaas is meer dan 60% niet tevreden over de prijzen van de kaartjes. De bezoekers vonden de kaartjes te duur. Daarnaast is de helft ontevreden over het eten en drinken, omdat er weinig keuze was.
 
-Daarnaast waren mensen niet tevreden over het eten en drinken, omdat er een slechte keuze was.
-
-Ik adviseer u om de keuze van eten en drinken te verbeteren.
-
-Ook raad ik aan om de prijzen te verlagen. Op deze manier kunt u de tevredenheid verhogen.
+Ik adviseer u om meer keuze in eten en drinken aan te bieden. Ook raad ik u aan om de prijzen van de kaartjes te verlagen. Op deze manier kunt u de tevredenheid verhogen.
 
 Als u vragen heeft, kunt u altijd contact met mij opnemen.
 
@@ -1913,7 +2248,7 @@ Met vriendelijke groet,</div>
               <div class="phrase-item"><div class="phrase-nl">Meer dan de helft is niet tevreden over…</div><div class="phrase-en">Более половины недовольны …</div></div>
               <div class="phrase-item"><div class="phrase-nl">Ik adviseer u om … te verbeteren.</div><div class="phrase-en">Рекомендую вам улучшить …</div></div>
               <div class="phrase-item"><div class="phrase-nl">Op deze manier kunt u…</div><div class="phrase-en">Таким образом вы можете…</div></div>
-              <div class="phrase-item"><div class="phrase-nl">Dit komt waarschijnlijk omdat…</div><div class="phrase-en">Вероятно, это потому что…</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Dit komt waarschijnlijk doordat…</div><div class="phrase-en">Вероятно, это из-за того, что…</div></div>
             </div>
             <div class="tip-box"><strong>Важно:</strong> Укажи конкретные % из таблицы. Для каждого результата добавь объяснение «omdat…». Дай минимум 2 совета с глаголом в инфинитиве: «Ik adviseer u om … te …».</div>
           </div>
@@ -1926,7 +2261,7 @@ Met vriendelijke groet,</div>
     <div id="planning" class="section">
       <div class="section-header">
         <div class="section-title">Изменение расписания</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -1937,7 +2272,7 @@ Met vriendelijke groet,</div>
               <div class="subtype-name-en">письмо об изменении расписания — две таблицы старое/новое</div>
               <div class="subtype-meta">
                 <span class="tag formal">formeel</span>
-                <span class="tag words">120–150 w</span>
+                <span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span>
               </div>
             </div>
             <div class="chevron">▼</div>
@@ -1962,7 +2297,7 @@ Er zijn de volgende wijzigingen:
 — <span class="fill-word">[Dag]</span> was een <span class="fill-word">[vrije dag / werkdag]</span>, maar nu moet u <span class="fill-word">[beschrijving nieuwe situatie]</span>.
 — <span class="fill-word">[Dag]</span> was een <span class="fill-word">[vrije dag / werkdag]</span>, maar nu is het <span class="fill-word">[beschrijving nieuwe situatie]</span>.
 
-Kunt u bevestigen dat u akkoord gaat met deze wijzigingen? Als u het niet eens bent met de nieuwe planning, kunt u contact opnemen met mij.
+Kunt u bevestigen dat u akkoord gaat met deze wijzigingen? Als u het niet eens bent met de nieuwe planning, kunt u contact met mij opnemen.
 
 Ik ontvang graag uw reactie vóór 10 mei 2026.
 
@@ -1975,7 +2310,7 @@ Er zijn de volgende wijzigingen:
 — Woensdag was een vrije dag, maar nu moet u 's ochtends naar Intechno B.V. rijden en 's middags naar Digitel.
 — Vrijdag was een normale werkdag, maar nu is het een feestdag voor het hele bedrijf.
 
-Kunt u bevestigen dat u akkoord gaat met deze wijzigingen? Als u het niet eens bent met de nieuwe planning, kunt u contact opnemen met mij.
+Kunt u bevestigen dat u akkoord gaat met deze wijzigingen? Als u het niet eens bent met de nieuwe planning, kunt u contact met mij opnemen.
 
 Ik ontvang graag uw reactie vóór 10 mei 2026.
 
@@ -1987,10 +2322,78 @@ Met vriendelijke groeten,</div>
               <div class="phrase-item"><div class="phrase-nl">Er zijn de volgende wijzigingen:</div><div class="phrase-en">Есть следующие изменения:</div></div>
               <div class="phrase-item"><div class="phrase-nl">[Dag] was een vrije dag / werkdag, maar nu…</div><div class="phrase-en">[День] был выходным / рабочим днём, но теперь…</div></div>
               <div class="phrase-item"><div class="phrase-nl">Kunt u bevestigen dat u akkoord gaat?</div><div class="phrase-en">Можете подтвердить своё согласие?</div></div>
-              <div class="phrase-item"><div class="phrase-nl">Als u het niet eens bent, kunt u contact opnemen met mij.</div><div class="phrase-en">Если вы не согласны, можете связаться со мной.</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Als u het niet eens bent, kunt u contact met mij opnemen.</div><div class="phrase-en">Если вы не согласны, можете связаться со мной.</div></div>
               <div class="phrase-item"><div class="phrase-nl">Ik ontvang graag uw reactie vóór…</div><div class="phrase-en">Буду рад(а) получить ответ до…</div></div>
             </div>
-            <div class="tip-box"><strong>Важно:</strong> Перечисли ВСЕ изменения. Для каждого изменения можно использовать формулу «In de oude planning … / In de nieuwe planning …» или «[Dag] was een vrije dag / werkdag, maar nu…». Не забудь спросить подтверждение и указать дедлайн ответа.</div>
+            <div class="tip-box"><strong>Важно:</strong> Перечисли ВСЕ изменения. Для каждого изменения можно использовать формулу «In de oude planning … / In de nieuwe planning …» или «[Dag] was een vrije dag / werkdag, maar nu…». Не забудь спросить подтверждение, написать, что делать при несогласии, и указать дедлайн ответа. В экзамене 2024 таблица прилагалась к письму — но изменения всё равно нужно перечислить словами.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- KEUZE -->
+    <div id="keuze" class="section">
+      <div class="section-header">
+        <div class="section-title">Выбор по таблице</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
+      </div>
+      <div class="subtypes-grid">
+
+        <div class="subtype-card">
+          <div class="subtype-header" onclick="toggle(this)">
+            <div>
+              <div class="subtype-name">Выбрать вариант из таблицы и убедить</div>
+              <div class="subtype-name-en">kiezen uit een tabel en overtuigen</div>
+              <div class="subtype-meta"><span class="tag informal">informeel/formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈110–140 w</span></div>
+            </div>
+            <div class="chevron">▼</div>
+          </div>
+          <div class="subtype-body">
+            <div class="body-label">Структура</div>
+            <div class="structure-pills">
+              <span class="pill">Waarom schrijf je</span><span class="arrow">→</span>
+              <span class="pill">Welke opties</span><span class="arrow">→</span>
+              <span class="pill">Jouw keuze + min. 2 redenen</span><span class="arrow">→</span>
+              <span class="pill">Waarom de andere minder (per optie 1 reden)</span><span class="arrow">→</span>
+              <span class="pill">Volgende stap</span>
+            </div>
+            <div class="template-pair-labels"><div class="body-label">Шаблон</div><div class="body-label">Пример</div></div>
+            <div class="template-pair">
+            <div class="template-box">Hoi <span class="fill-word">[naam]</span>,
+
+Ik schrijf je omdat we samen <span class="fill-word">[een stageplek / een cursus]</span> zoeken. Ik heb drie <span class="fill-word">[opties]</span> gevonden: <span class="fill-word">[A]</span>, <span class="fill-word">[B]</span> en <span class="fill-word">[C]</span>.
+
+Ik kies voor <span class="fill-word">[A]</span>. Ten eerste <span class="fill-word">[reden 1 uit de tabel: is de vergoeding het hoogst]</span>. Ten tweede <span class="fill-word">[reden 2: is de reistijd maar 15 minuten]</span>.
+
+<span class="fill-word">[B]</span> vind ik minder geschikt, omdat <span class="fill-word">[reden]</span>. <span class="fill-word">[C]</span> past ook minder goed bij ons, want <span class="fill-word">[reden]</span>.
+
+Zullen we <span class="fill-word">[A]</span> <span class="fill-word">[bellen / mailen]</span>? <span class="fill-word">[Hoe: het telefoonnummer staat op de website]</span>.
+
+Groetjes,
+<span class="fill-word">[Naam]</span></div>
+            <div class="example-box">Hoi Sanne,
+
+Ik schrijf je omdat we samen een Excel-cursus willen volgen. Ik heb drie cursussen gevonden: bij Computerschool Alfa, bij Leerhuis Delta en online bij Digi-Leren.
+
+Ik kies voor Leerhuis Delta. Ten eerste is de cursus op dinsdagavond en dan hebben we allebei tijd. Ten tweede kost hij maar 150 euro. Dat is de goedkoopste cursus.
+
+De andere cursussen vind ik minder geschikt. Computerschool Alfa is op zaterdag en dan moet jij altijd werken. Digi-Leren is helemaal online, maar ik wil liever in een klas leren, zodat we de docent vragen kunnen stellen.
+
+Zullen we ons deze week aanmelden? Dat kan via de website van Leerhuis Delta. Wat vind jij ervan?
+
+Groetjes,</div>
+            </div>
+            <div class="body-label">Ключевые фразы</div>
+            <div class="phrases-grid">
+              <div class="phrase-item"><div class="phrase-nl">Ik kies voor …, omdat…</div><div class="phrase-en">Я выбираю …, потому что…</div></div>
+              <div class="phrase-item"><div class="phrase-nl">… is goedkoper / dichterbij / handiger dan …</div><div class="phrase-en">… дешевле / ближе / удобнее, чем …</div></div>
+              <div class="phrase-item"><div class="phrase-nl">… heeft de hoogste vergoeding.</div><div class="phrase-en">У … самая высокая оплата.</div></div>
+              <div class="phrase-item"><div class="phrase-nl">… vind ik minder geschikt, omdat…</div><div class="phrase-en">… мне подходит меньше, потому что…</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Een nadeel van … is dat…</div><div class="phrase-en">Минус … в том, что…</div></div>
+              <div class="phrase-item"><div class="phrase-nl">Zullen we …? / Wat vind jij ervan?</div><div class="phrase-en">Давай …? / Что ты думаешь?</div></div>
+            </div>
+            <div class="tip-box"><strong>Как в экзамене 2025 («Stage kledingwinkel»):</strong> зачем пишешь · какие три варианта · какой выбираешь и минимум 2 причины · почему остальные хуже (минимум по 1 причине на каждый) · что делать дальше. Таблица не прикладывается — называй цифры: «€ 120 per maand», «15 minuten reizen».</div>
           </div>
         </div>
 
@@ -2001,7 +2404,7 @@ Met vriendelijke groeten,</div>
     <div id="informatief" class="section">
       <div class="section-header">
         <div class="section-title">Информирование</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -2010,7 +2413,7 @@ Met vriendelijke groeten,</div>
             <div>
               <div class="subtype-name">Информационное письмо сотрудникам</div>
               <div class="subtype-name-en">informatieve brief aan medewerkers</div>
-              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words">120–150 w</span></div>
+              <div class="subtype-meta"><span class="tag formal">formeel</span><span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span></div>
             </div>
             <div class="chevron">▼</div>
           </div>
@@ -2027,7 +2430,7 @@ Met vriendelijke groeten,</div>
             <div class="template-pair">
             <div class="template-box">Beste <span class="fill-word">[nieuwe medewerkers / collega's]</span>,
 
-Welkom bij <span class="fill-word">[bedrijf/organisatie]</span>! Ik schrijf u zodat u informatie heeft over <span class="fill-word">[uw nieuwe werk / de veranderingen]</span>.
+Welkom bij <span class="fill-word">[bedrijf/organisatie]</span>! In deze brief geef ik u informatie over <span class="fill-word">[uw nieuwe werk / de veranderingen]</span>.
 
 <span class="fill-word">[Beschrijf de taken / situatie]</span>.
 
@@ -2038,17 +2441,15 @@ Daarnaast heb ik <span class="fill-word">[aantal]</span> praktische tips voor u.
 Met vriendelijke groet,</div>
             <div class="example-box">Beste nieuwe medewerkers,
 
-Welkom bij hotel De Strandloper! Ik schrijf u zodat u informatie heeft over uw nieuwe werk.
+Welkom bij hotel De Strandloper! In deze brief geef ik u informatie over uw nieuwe werk.
 
-Uw werkdag bij het hotel ziet er uit drie delen. U moet de lobby en het restaurant schoonmaken.
-
-Daarna moet u koffie en thee voor de bezoekers maken. Bovendien moet u de bezoekers helpen met hun vragen.
+Uw werkdag in het hotel bestaat uit drie delen. Eerst maakt u de lobby en het restaurant schoon. Daarna maakt u koffie en thee voor de gasten. Ten slotte helpt u de gasten met hun vragen.
 
 Daarnaast heb ik twee praktische tips voor u.
 
-Ten eerste moet u altijd vriendelijk zijn. Soms zijn de bezoekers vervelend, maar u moet in alle gevallen professioneel blijven. Ten tweede is het goed om 10–15 minuten voor uw werkdag te komen, zodat u zich beter kunt voorbereiden.
+Ten eerste moet u altijd vriendelijk zijn. Soms zijn gasten vervelend, maar u moet altijd professioneel blijven. Ten tweede is het handig om 10 minuten voor het begin van uw dienst aanwezig te zijn, zodat u zich rustig kunt voorbereiden.
 
-Wij hebben 10 medewerkers in het team en iedereen is heel gemotiveerd en vriendelijk!
+Ons team bestaat uit tien medewerkers en iedereen is heel gemotiveerd en vriendelijk!
 
 Welkom bij De Strandloper en veel succes!
 
@@ -2064,7 +2465,7 @@ Met vriendelijke groet,</div>
     <div id="stageverslag" class="section">
       <div class="section-header">
         <div class="section-title">Отчёт о стажировке</div>
-        <div class="section-subtitle">Opgave 11–12 · korte schrijftaak · 120–150 слов</div>
+        <div class="section-subtitle">Opgave 9–12 · письмо по пунктам · до 8 баллов</div>
       </div>
       <div class="subtypes-grid">
 
@@ -2075,7 +2476,7 @@ Met vriendelijke groet,</div>
               <div class="subtype-name-en">отчёт по картинкам с временем</div>
               <div class="subtype-meta">
                 <span class="tag formal">formeel</span>
-                <span class="tag words">120–150 w</span>
+                <span class="tag words" title="Ориентир для тренировки — экзамен слова не считает">≈120–150 w</span>
               </div>
             </div>
             <div class="chevron">▼</div>
@@ -2125,7 +2526,7 @@ Met vriendelijke groet,</div>
               <div class="phrase-item"><div class="phrase-nl">De minst leuke taak was… omdat…</div><div class="phrase-en">Наименее приятным заданием было… потому что…</div></div>
               <div class="phrase-item"><div class="phrase-nl">Ik raad deze stage aan andere studenten aan omdat…</div><div class="phrase-en">Рекомендую эту стажировку другим студентам, потому что…</div></div>
             </div>
-            <div class="tip-box"><strong>Важно:</strong> Опиши каждую картинку с точным временем «Om [tijd] heb ik…». Используй perfectum (heb + voltooid deelwoord). Для leukste и minst leuke обязательно добавь «omdat». В конце чётко скажи, рекомендуешь ли стажировку.</div>
+            <div class="tip-box"><strong>Важно:</strong> Опиши каждую картинку с точным временем «Om [tijd] heb ik…». Используй perfectum (heb + voltooid deelwoord). Для leukste и minst leuke обязательно добавь «omdat». В конце чётко скажи, рекомендуешь ли стажировку. Вариант из экзамена 2024: стажировка ещё идёт и текст для новых студентов — тогда пиши в настоящем времени («Om 8 uur bak ik…») и добавь, где стажировка и сколько она длится.</div>
           </div>
         </div>
 
@@ -2163,11 +2564,12 @@ function toggleGroup(label) {
 }
 
 const sections = [
-  {id:'klacht', label:'Жалоба 11–12'}, {id:'verzoek', label:'Просьба 11–12'}, {id:'sollicitatie', label:'Резюме 11–12'},
-  {id:'uitnodiging', label:'Приглашение 11–12'}, {id:'advies', label:'Совет 11–12'}, {id:'reactie', label:'Ответ 11–12'},
-  {id:'informatie', label:'Запрос инфо 11–12'}, {id:'tevredenheid', label:'Опрос 11–12'}, {id:'planning', label:'Расписание 11–12'},
-  {id:'informatief', label:'Информирование 11–12'}, {id:'stageverslag', label:'Стажировка 11–12'}, {id:'zinstaak', label:'Предложения 1–8'}, {id:'deelschrijf', label:'Дополнить 9'},
-  {id:'formulier', label:'Анкета 10'}, {id:'aanhef', label:'Обращение'}, {id:'verbinding', label:'Связки'}, {id:'beoordeling', label:'Оценка'}
+  {id:'klacht', label:'Жалоба'}, {id:'verzoek', label:'Просьба'}, {id:'sollicitatie', label:'Резюме'},
+  {id:'uitnodiging', label:'Приглашение'}, {id:'advies', label:'Совет'}, {id:'reactie', label:'Ответ'},
+  {id:'informatie', label:'Запрос инфо'}, {id:'tevredenheid', label:'Опрос'}, {id:'planning', label:'Расписание'},
+  {id:'keuze', label:'Выбор по таблице'}, {id:'informatief', label:'Информирование'}, {id:'stageverslag', label:'Стажировка'},
+  {id:'zinstaak', label:'Предложения 1–8'}, {id:'deelschrijf', label:'Письмо 9–10'}, {id:'formulier', label:'Анкета 9–10'},
+  {id:'aanhef', label:'Обращение'}, {id:'verbinding', label:'Связки'}, {id:'beoordeling', label:'Оценка'}
 ];
 const topNav = document.getElementById('topNav');
 sections.forEach(s => {
